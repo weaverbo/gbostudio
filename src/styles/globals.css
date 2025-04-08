@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+font-size:10px
+}
+
+.container {
+  @apply max-w-[1440px] mx-auto;
+}
