@@ -20,7 +20,7 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Email"
-                className="w-[385px] h-[67px] p-[24px] border-[1.1px] border-white bg-transparent text-sm"
+                className="w-[385px] h-[67px] p-[24px] border-[1.1px] border-white bg-transparent text-sm text-white placeholder:text-white opacity-80"
               />
               <button>
                 <Image
@@ -56,11 +56,7 @@ export default function Footer() {
       <div className="flex items-center justify-center bg-submain text-black opacity-40 h-[150px]">
         <p>Copyright © 2025 GBO Studio</p>
         <div className="px-[12px]">
-          <Image
-            src={ellipse}
-            alt="ellipse"
-            className="filter drop-shadow-[0_0_30px_rgba(0,0,0,0.3)]"
-          />
+          <Image src={ellipse} alt="ellipse" />
         </div>
         <div className="flex gap-[8px]">
           <span>HOME</span>

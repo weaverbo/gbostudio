@@ -7,7 +7,7 @@ export default function Header() {
         GBO STUDIO
       </StyledLink>
       <div className="text-xl font-">
-        <StyledLink href={'/'}>PORTFOLIO</StyledLink>
+        <StyledLink href={'/portpolio'}>PORTFOLIO</StyledLink>
         <StyledLink href={'/'} className="ml-[24px]">
           CONTACT
         </StyledLink>
