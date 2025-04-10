@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="container flex justify-between items-start pt-[72px]">
           <div>
             <div className="flex gap-[8px] items-center text-white">
-              <div className="text-3xl">LET'S TALK</div>
+              <div className="text-3xl">LET&apos;S TALK</div>
               <div className="text-xs font-thin leading-[1.2]">
                 <p>맞춤형 솔루션으로</p>
                 <p>웹페이지 제작 고민을 덜어드립니다.</p>
