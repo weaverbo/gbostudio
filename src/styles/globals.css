@@ -6,6 +6,19 @@
   background-color: #ebebeb;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+div {
+  @apply tracking-tight leading-none;
+}
+
 .container {
   @apply max-w-[1440px] px-[140px] mx-auto;
 }

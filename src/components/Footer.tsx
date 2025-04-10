@@ -11,8 +11,8 @@ export default function Footer() {
           <div>
             <div className="flex gap-[8px] items-center text-white">
               <div className="text-3xl">LET&apos;S TALK</div>
-              <div className="text-xs font-thin leading-[1.2]">
-                <p>맞춤형 솔루션으로</p>
+              <div className="text-[13px] font-thin ">
+                <p className="leading-[21px]">맞춤형 솔루션으로</p>
                 <p>웹페이지 제작 고민을 덜어드립니다.</p>
               </div>
             </div>
@@ -30,7 +30,7 @@ export default function Footer() {
                 />
               </button>
             </form>
-            <p className="pl-[24px] pt-[4px] text-xs text-white font-thin">
+            <p className="pl-[24px] pt-[11px] text-xs text-white font-thin">
               * 메일주소 남겨주시면 빠른 시일 내에 회신드리겠습니다!
             </p>
           </div>
@@ -39,7 +39,7 @@ export default function Footer() {
               GBO Studio
             </div>
             <div className="font-sm font-thin text-white opacity-80">
-              <p className="underline mt-[25px]">OFFICE HOURS</p>
+              <p className="underline mt-[33px]">OFFICE HOURS</p>
               <p className="flex justify-between mt-[10px]">
                 <span>MON</span>
                 <span>FRI</span>

@@ -15,8 +15,10 @@ export default function main() {
       </div>
       <div>
         <div>
-          <p className="text-xl text-main opacity-60">LATEST WORK</p>
-          <h2 className="text-main text-4xl">Team website</h2>
+          <p className="text-xl text-main opacity-60 mt-[45px] mb-[25px]">
+            LATEST WORK
+          </p>
+          <h2 className="text-main text-4xl mb-[10px]">Team website</h2>
           <div className="mt-[16px]">
             <StyledLink href="/portpolio/portpolio_detail">
               <Image
@@ -28,8 +30,10 @@ export default function main() {
           </div>
         </div>
         <div className="mt-[72px]">
-          <p className="text-xl text-main opacity-60">LATEST WORK</p>
-          <h2 className="text-main text-4xl">Chat App website</h2>
+          <p className="text-xl text-main opacity-60 mt-[45px] mb-[25px]">
+            LATEST WORK
+          </p>
+          <h2 className="text-main text-4xl mb-[10px]">Chat App website</h2>
           <div className="mt-[16px] mb-[140px]">
             <Image
               className="shadow-[0_0_30px_rgba(0,0,0,0.2)]"

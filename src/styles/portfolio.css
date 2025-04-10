@@ -1,0 +1,23 @@
+.portfolio-container {
+  @apply flex w-full gap-[72px];
+}
+
+.portfolio-detail-container {
+  @apply flex flex-col gap-[16px] mt-[36px];
+}
+
+.portpolio_img {
+  @apply w-[565px] h-[482px] shadow-[0_0_30px_rgba(0,0,0,0.5)];
+}
+
+.portpolio_title {
+  @apply text-main text-[51px] font-medium mt-[50px];
+}
+
+.portpolio_tag {
+  @apply text-main text-xl bg-main bg-opacity-5 py-[6px] px-[11px] text-center;
+}
+
+.portpolio_link {
+  @apply w-[183px] border-[2px] border-main text-main text-xl py-[6px] px-[10px] text-center;
+}

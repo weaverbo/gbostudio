@@ -1,3 +1,3 @@
 .circle-marker::after {
-  @apply absolute right-[-20px] top-[125px] w-[20px] h-[20px] bg-[#FFCD00] rounded-full content-[''];
+  @apply absolute right-[-20px] top-[90px] w-[20px] h-[20px] bg-[#FFCD00] rounded-full content-[''];
 }
