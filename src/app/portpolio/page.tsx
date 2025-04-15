@@ -14,7 +14,7 @@ import '../../styles/portfolio.css';
 export default function Portpolio() {
   return (
     <div className="container">
-      <h1 className="text-[170px] text-main font-bold mt-[40px] ml-[-15.5px]">
+      <h1 className="text-[170px] text-main font-bold mt-[163px] ml-[-15.5px]">
         PORTFOLIO
       </h1>
       <div className="portfolio-container mt-[80px]">

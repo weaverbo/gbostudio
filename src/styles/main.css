@@ -1,3 +1,19 @@
 .circle-marker::after {
-  @apply absolute right-[-20px] top-[90px] w-[20px] h-[20px] bg-[#FFCD00] rounded-full content-[''];
+  @apply absolute top-[92px] w-[20px] h-[20px] ml-[10px] bg-[#FFCD00] rounded-full content-[''];
+}
+
+.service-card {
+  @apply w-[345px] h-[224px] border-[1px] border-main px-[36px] py-[36px] rounded-br-[50px] rounded-tl-[50px] flex-shrink-0;
+}
+
+.service-number {
+  @apply bg-[#FFCD00] w-[24px] h-[24px] rounded-full flex items-center justify-center text-sm text-main font-bold mb-[12px];
+}
+
+.service-title {
+  @apply text-md text-main font-bold mt-[8px] mb-[22px];
+}
+
+.service-description {
+  @apply text-base text-main font-thin flex flex-col;
 }

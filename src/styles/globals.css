@@ -20,5 +20,15 @@ div {
 }
 
 .container {
-  @apply max-w-[1440px] px-[140px] mx-auto;
+  @apply max-w-[1160px] mx-auto;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
