@@ -1,3 +1,15 @@
+.scroll-dots {
+  @apply absolute top-[270px] right-[53px] flex flex-col gap-[20px];
+}
+
+.scroll-dot {
+  @apply w-[10px] h-[10px] bg-[#FFCD00] rounded-full;
+}
+
+.scroll-dot_other {
+  @apply w-[10px] h-[10px] bg-main rounded-full;
+}
+
 .circle-marker::after {
   @apply absolute top-[92px] w-[20px] h-[20px] ml-[10px] bg-[#FFCD00] rounded-full content-[''];
 }

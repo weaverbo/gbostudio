@@ -17,10 +17,11 @@ export default function PortpolioDetail() {
         website and the blog in Webflow which has one of the best CMS for blog
         hosting.
       </p>
-      <div className="text-xl text-main circle-marker">
+      <div className="text-xl text-main relative w-[151px] h-[43px]">
         <StyledLink
           href={'https://team-tau-seven.vercel.app/'}
           style={{ textShadow: '0 4px 4px rgba(0, 0, 0, 0.2)' }}
+          className="circle-marker"
         >
           visit the site
         </StyledLink>
