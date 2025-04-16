@@ -18,9 +18,14 @@ export default function RootLayout({
   return (
     <>
       <html lang="en" className={InriaSans.variable}>
-        <body className="font-InriaSans">
+        <body className="font-InriaSans relative">
           <Header />
-          {children} <Footer />
+          {children}
+          <div className="w-[120px] h-[120px] rounded-full bg-submain text-main font-bold text-xl flex items-center justify-center flex-col fixed bottom-[50px] right-[100px] z-50">
+            <span>1:1</span>
+            <span>talk</span>
+          </div>
+          <Footer />
         </body>
       </html>
     </>

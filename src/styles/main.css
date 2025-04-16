@@ -15,7 +15,7 @@
 }
 
 .service-card {
-  @apply w-[345px] h-[224px] border-[1px] border-main px-[36px] py-[36px] rounded-br-[50px] rounded-tl-[50px] flex-shrink-0;
+  @apply w-[345px] h-[224px] border-[1px] border-main px-[36px] py-[36px] rounded-br-[50px] rounded-tl-[50px] flex-shrink-0 hover:bg-main hover:bg-opacity-10;
 }
 
 .service-number {

@@ -53,15 +53,15 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center bg-submain text-black opacity-40 h-[150px]">
-        <p>Copyright © 2025 GBO Studio</p>
+      <div className="flex items-center justify-center bg-background h-[150px]">
+        <p className="text-black opacity-40">Copyright © 2025 GBO Studio</p>
         <div className="px-[12px]">
           <Image src={ellipse} alt="ellipse" />
         </div>
-        <div className="flex gap-[8px]">
-          <span>HOME</span>
-          <span>SERVICE</span>
-          <span>PORTPOLIO</span>
+        <div className="flex gap-[8px] opacity-40">
+          <span className="text-black">HOME</span>
+          <span className="text-black">SERVICE</span>
+          <span className="text-black">PORTPOLIO</span>
         </div>
       </div>
     </>

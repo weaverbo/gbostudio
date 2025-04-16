@@ -30,8 +30,8 @@ module.exports = {
       },
       colors: {
         main: '#2640A1',
-        submain: 'FFCD00',
-        background: 'EBEBEB',
+        submain: '#FFCD00',
+        background: '#EBEBEB',
       },
     },
   },

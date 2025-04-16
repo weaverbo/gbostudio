@@ -3,8 +3,8 @@
 import {
   AnimatePresence,
   motion,
-  useScroll,
-  useTransform,
+  // useScroll,
+  // useTransform,
 } from 'framer-motion';
 import Image from 'next/image';
 import StyledLink from 'next/link';
@@ -19,13 +19,13 @@ export default function Main() {
   const [visibleElements, setVisibleElements] = useState<number[]>([]);
   const [currentScreen, setCurrentScreen] = useState<number>(0);
 
-  const { scrollYProgress } = useScroll({
-    container: scrollContainerRef,
-  });
+  // const { scrollYProgress } = useScroll({
+  //   container: scrollContainerRef,
+  // });
 
-  const designOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const engineeringOpacity = useTransform(scrollYProgress, [0.4, 0.8], [0, 1]);
-  const harmonyOpacity = useTransform(scrollYProgress, [0.8, 1.2], [0, 1]);
+  // const designOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  // const engineeringOpacity = useTransform(scrollYProgress, [0.4, 0.8], [0, 1]);
+  // const harmonyOpacity = useTransform(scrollYProgress, [0.8, 1.2], [0, 1]);
 
   const startTextAnimation = () => {
     setVisibleElements([]);
@@ -60,9 +60,9 @@ export default function Main() {
         setCurrentScreen(1);
       } else if (scrollPosition <= 17.5 && currentScreen === 1) {
         setCurrentScreen(0);
-      } else if (scrollPosition > 35 && currentScreen === 1) {
+      } else if (scrollPosition > 150 && currentScreen === 1) {
         setCurrentScreen(2);
-      } else if (scrollPosition <= 35 && currentScreen === 2) {
+      } else if (scrollPosition <= 150 && currentScreen === 2) {
         setCurrentScreen(1);
       }
     };
@@ -72,7 +72,7 @@ export default function Main() {
   }, [currentScreen]);
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <div className="container">
         <div className="h-[900px] relative">
           <div
@@ -129,10 +129,10 @@ export default function Main() {
                   transition={{ duration: 0.5 }}
                   style={{ zIndex: 5 }}
                 >
-                  <h1 className="text-[170px] text-main font-bold ml-[-12px]">
+                  <h1 className="h-[204px] text-[170px] text-main font-bold ml-[-12px]">
                     Engineering
                   </h1>
-                  <div>
+                  <div className="mt-[42px]">
                     <p
                       className={`text-xl text-main transition-opacity duration-500 ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
                     >
@@ -159,7 +159,7 @@ export default function Main() {
               )}
               {currentScreen === 2 && (
                 <motion.div
-                  className="mt-[140px] mb-[406px] flex flex-col absolute w-full"
+                  className="h-[204px] mt-[140px] mb-[406px] flex flex-col absolute w-full"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -169,7 +169,7 @@ export default function Main() {
                   <h1 className="text-[170px] text-main font-bold ml-[-12px]">
                     Harmony
                   </h1>
-                  <div>
+                  <div className="mt-[42px]">
                     <p
                       className={`text-xl text-main transition-opacity duration-500 ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
                     >
@@ -197,7 +197,6 @@ export default function Main() {
             </AnimatePresence>
           </div>
         </div>
-
         {/* SERVICES */}
         <div>
           <div className="relative w-[556px]">
