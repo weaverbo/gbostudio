@@ -1,3 +1,7 @@
-.circle-marker::after {
-  @apply relative mt-[36px] absolute right-[-8px] w-[10px] h-[10px] bg-[#FFCD00] rounded-full content-[''] shadow-[0_2px_8px_rgba(0,0,0,0.2)] inline-block;
+.marker-container {
+  @apply flex text-xl text-main mt-[36px];
+}
+
+.marker {
+  @apply mt-[12px] ml-[8px] w-[10px] h-[10px] bg-[#FFCD00] rounded-full content-[''] shadow-[0_2px_8px_rgba(0,0,0,0.2)];
 }

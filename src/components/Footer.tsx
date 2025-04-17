@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center bg-background h-[150px]">
+      <div className="container flex items-center justify-start bg-background h-[150px]">
         <p className="text-black opacity-40">Copyright © 2025 GBO Studio</p>
         <div className="px-[12px]">
           <Image src={ellipse} alt="ellipse" />

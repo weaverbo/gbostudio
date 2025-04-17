@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  AnimatePresence,
-  motion,
-  // useScroll,
-  // useTransform,
-} from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import StyledLink from 'next/link';
 import { useEffect, useRef, useState } from 'react';
@@ -18,14 +13,6 @@ export default function Main() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [visibleElements, setVisibleElements] = useState<number[]>([]);
   const [currentScreen, setCurrentScreen] = useState<number>(0);
-
-  // const { scrollYProgress } = useScroll({
-  //   container: scrollContainerRef,
-  // });
-
-  // const designOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  // const engineeringOpacity = useTransform(scrollYProgress, [0.4, 0.8], [0, 1]);
-  // const harmonyOpacity = useTransform(scrollYProgress, [0.8, 1.2], [0, 1]);
 
   const startTextAnimation = () => {
     setVisibleElements([]);
@@ -75,15 +62,11 @@ export default function Main() {
     <div className="overflow-x-hidden">
       <div className="container">
         <div className="h-[900px] relative">
-          <div
-            className="absolute w-full h-[2000px] overflow-y-scroll scrollbar-hide"
-            ref={scrollContainerRef}
-            style={{ scrollBehavior: 'smooth' }}
-          >
+          <div ref={scrollContainerRef} style={{ scrollBehavior: 'smooth' }}>
             <AnimatePresence mode="wait">
               {currentScreen === 0 && (
                 <motion.div
-                  className="mt-[140px] mb-[406px] flex flex-col absolute w-full"
+                  className="scroll-section"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -91,23 +74,23 @@ export default function Main() {
                   style={{ zIndex: 10 }}
                 >
                   <h1
-                    className={`h-[204px] text-[170px] text-main font-bold ml-[-13px] transition-opacity duration-500 ${visibleElements.includes(0) ? 'opacity-100' : 'opacity-0'}`}
+                    className={`scroll-section-title ${visibleElements.includes(0) ? 'opacity-100' : 'opacity-0'}`}
                   >
                     Design
                   </h1>
                   <div className="mt-[42px]">
                     <p
-                      className={`text-xl text-main transition-opacity duration-500 ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
+                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
                     >
                       Interactive Design
                     </p>
                     <p
-                      className={`text-xl text-main my-[12px] transition-opacity duration-500 ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
+                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
                     >
                       Engineering for connection
                     </p>
                     <p
-                      className={`text-xl text-main transition-opacity duration-500 ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
                     >
                       Designing the overall user experience and behavior with a
                       product or service
@@ -122,29 +105,27 @@ export default function Main() {
               )}
               {currentScreen === 1 && (
                 <motion.div
-                  className="mt-[140px] mb-[406px] flex flex-col absolute w-full"
+                  className="scroll-section"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
                   style={{ zIndex: 5 }}
                 >
-                  <h1 className="h-[204px] text-[170px] text-main font-bold ml-[-12px]">
-                    Engineering
-                  </h1>
+                  <h1 className="scroll-section-title">Engineering</h1>
                   <div className="mt-[42px]">
                     <p
-                      className={`text-xl text-main transition-opacity duration-500 ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
+                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
                     >
                       Interactive Design
                     </p>
                     <p
-                      className={`text-xl text-main my-[12px] transition-opacity duration-500 ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
+                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
                     >
                       Engineering for connection
                     </p>
                     <p
-                      className={`text-xl text-main transition-opacity duration-500 ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
                     >
                       Designing the overall user experience and behavior with a
                       product or service
@@ -159,29 +140,27 @@ export default function Main() {
               )}
               {currentScreen === 2 && (
                 <motion.div
-                  className="h-[204px] mt-[140px] mb-[406px] flex flex-col absolute w-full"
+                  className="scroll-section"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
                   style={{ zIndex: 5 }}
                 >
-                  <h1 className="text-[170px] text-main font-bold ml-[-12px]">
-                    Harmony
-                  </h1>
+                  <h1 className="scroll-section-title">Harmony</h1>
                   <div className="mt-[42px]">
                     <p
-                      className={`text-xl text-main transition-opacity duration-500 ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
+                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
                     >
                       Interactive Design
                     </p>
                     <p
-                      className={`text-xl text-main my-[12px] transition-opacity duration-500 ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
+                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
                     >
                       Engineering for connection
                     </p>
                     <p
-                      className={`text-xl text-main transition-opacity duration-500 ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
                     >
                       Designing the overall user experience and behavior with a
                       product or service
@@ -199,10 +178,11 @@ export default function Main() {
         </div>
         {/* SERVICES */}
         <div>
-          <div className="relative w-[556px]">
-            <h1 className="text-main font-bold text-6xl circle-marker ">
+          <div className="marker-container">
+            <h1 className="text-main font-bold text-6xl circle-marker">
               SERVICES
             </h1>
+            <div className="marker"></div>
           </div>
           <div className="relative mt-[102px] mb-[280px]">
             <div
@@ -297,10 +277,11 @@ export default function Main() {
 
         {/* PORTFOLIO */}
         <div>
-          <div className="relative w-[662px]">
+          <div className="marker-container">
             <h1 className="text-main font-bold text-6xl circle-marker">
               PORTFOLIO
             </h1>
+            <div className="marker"></div>
           </div>
           <h2 className="text-xl text-main opacity-60 mt-[45px] mb-[25px]">
             LATEST WORK
