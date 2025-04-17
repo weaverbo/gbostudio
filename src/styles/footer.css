@@ -1,0 +1,57 @@
+.email-input {
+  @apply block w-[385px] h-[67px] p-[24px] border-[1.1px] border-white bg-transparent text-white text-sm placeholder:opacity-80 placeholder:tracking-normal;
+}
+
+.email-input-container {
+  @apply relative h-[67px];
+}
+
+.email-submit-button {
+  @apply absolute top-[26.5px] left-[337px];
+}
+
+.contact-left-title {
+  @apply text-3xl;
+}
+
+.contact-left-text {
+  @apply text-[13px] font-thin mt-[-5px];
+}
+
+.contact-left-description {
+  @apply pl-[24px] pt-[11px] text-xs text-white font-thin;
+}
+
+.contact-right-subtitle {
+  @apply underline mt-[33px];
+}
+
+@media (max-width: 1024px) {
+  .contact-left-title {
+    @apply text-[28px];
+  }
+
+  .contact-left-text {
+    @apply text-[10px];
+  }
+
+  .email-input {
+    @apply w-[273px] h-[45px] text-[10px];
+  }
+
+  .email-input-container {
+    @apply relative h-[45px];
+  }
+
+  .email-submit-button {
+    @apply w-[16px] top-[20px] left-[241px];
+  }
+
+  .contact-left-description {
+    @apply pl-[16px] text-[10px] text-white font-thin;
+  }
+
+  .contact-right-subtitle {
+    @apply mt-[10px];
+  }
+}

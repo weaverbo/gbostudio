@@ -6,6 +6,10 @@
   @apply h-[204px] text-[170px] text-main font-bold ml-[-13px] transition-opacity duration-500;
 }
 
+.scroll-section-description-container {
+  @apply mt-[42px];
+}
+
 .scroll-section-description {
   @apply text-xl text-main transition-opacity duration-500;
 }
@@ -15,7 +19,7 @@
 }
 
 .scroll-dots {
-  @apply absolute top-[270px] right-[53px] flex flex-col gap-[20px];
+  @apply absolute top-[268px] right-[53px] flex flex-col gap-[20px];
 }
 
 .scroll-dot {
@@ -24,6 +28,10 @@
 
 .scroll-dot_other {
   @apply w-[10px] h-[10px] bg-main rounded-full;
+}
+
+.section-title {
+  @apply text-main font-bold text-6xl;
 }
 
 .marker-container {
@@ -38,14 +46,130 @@
   @apply w-[345px] h-[224px] border-[1px] border-main px-[36px] py-[36px] rounded-br-[50px] rounded-tl-[50px] flex-shrink-0 hover:bg-main hover:bg-opacity-10;
 }
 
-.service-number {
+.service-card-number {
   @apply bg-[#FFCD00] w-[24px] h-[24px] rounded-full flex items-center justify-center text-sm text-main font-bold mb-[12px];
 }
 
-.service-title {
+.service-card-title {
   @apply text-md text-main font-bold mt-[8px] mb-[22px];
 }
 
-.service-description {
+.service-card-description {
   @apply text-base text-main font-thin flex flex-col;
+}
+
+.portfolio-section-subtitle {
+  @apply text-xl text-main opacity-60 mt-[45px] mb-[25px];
+}
+
+.portfolio-section-text {
+  @apply text-main text-4xl mb-[10px];
+}
+
+@media (max-width: 1280px) {
+  .scroll-section-description-container {
+    @apply mt-[-42px];
+  }
+
+  .scroll-section-title {
+    @apply text-[120px];
+  }
+
+  .scroll-section-description {
+    @apply text-sm;
+  }
+
+  .scroll-section-description-other {
+    @apply text-sm;
+  }
+
+  .scroll-dots {
+    @apply top-[150px];
+  }
+
+  .section-title {
+    @apply text-[110px];
+  }
+
+  .marker {
+    @apply mt-[76px];
+  }
+
+  .portfolio-section-subtitle {
+    @apply text-md;
+  }
+
+  .portfolio-section-text {
+    @apply text-[48px];
+  }
+}
+
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 1024px) {
+  .scroll-section-title {
+    @apply text-[80px];
+  }
+
+  .scroll-section-description {
+    @apply text-sm;
+  }
+
+  .scroll-section-description-other {
+    @apply text-sm;
+  }
+
+  .scroll-dots {
+    @apply top-[160px];
+  }
+
+  .section-title {
+    @apply text-[70px];
+  }
+
+  .marker {
+    @apply mt-[50px] w-[10px] h-[10px];
+  }
+
+  .portfolio-section-subtitle {
+    @apply text-md;
+  }
+
+  .portfolio-section-text {
+    @apply text-[48px];
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-section-title {
+    @apply text-[48px] ml-[-4px];
+  }
+
+  .scroll-section-description-container {
+    @apply mt-[-106px];
+  }
+
+  .scroll-section-description {
+    @apply text-xs font-bold;
+  }
+
+  .scroll-section-description-other {
+    @apply text-xs font-bold my-[4px];
+  }
+
+  .scroll-dots {
+    @apply top-[110px];
+  }
+
+  .scroll-dot {
+    @apply w-[5px] h-[5px];
+  }
+
+  .scroll-dot_other {
+    @apply w-[5px] h-[5px];
+  }
+}
+
+@media (max-width: 580px) {
 }

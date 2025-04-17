@@ -2,44 +2,47 @@ import Image from 'next/image';
 
 import arrow_left from '../../public/img/arrow_left.png';
 import ellipse from '../../public/img/blueellipse.png';
+import '../styles/footer.css';
 
 export default function Footer() {
   return (
     <>
-      <div className="bg-main h-[312px]">
-        <div className="container flex justify-between items-start pt-[72px]">
+      <div className="bg-main">
+        <div className="container flex justify-between items-start py-[72px]">
           <div>
             <div className="flex gap-[8px] items-center text-white">
-              <div className="text-3xl">LET&apos;S TALK</div>
-              <div className="text-[13px] font-thin ">
+              <div className="contact-left-title">LET&apos;S TALK</div>
+              <div className="contact-left-text">
                 <p className="leading-[21px]">맞춤형 솔루션으로</p>
                 <p>웹페이지 제작 고민을 덜어드립니다.</p>
               </div>
             </div>
-            <form action="" className="relative mt-[24px]">
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-[385px] h-[67px] p-[24px] border-[1.1px] border-white bg-transparent text-sm text-white placeholder:text-white opacity-80"
-              />
-              <button>
-                <Image
-                  src={arrow_left}
-                  alt="arrow_left"
-                  className="absolute top-[26.5px] left-[337px]"
+            <form className="block mt-[24px]">
+              <div className="email-input-container">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="email-input"
                 />
-              </button>
+                <button>
+                  <Image
+                    src={arrow_left}
+                    alt="arrow_left"
+                    className="email-submit-button"
+                  />
+                </button>
+              </div>
             </form>
-            <p className="pl-[24px] pt-[11px] text-xs text-white font-thin">
+            <p className="contact-left-description">
               * 메일주소 남겨주시면 빠른 시일 내에 회신드리겠습니다!
             </p>
           </div>
-          <div className="flex flex-col items-stretch text-white">
+          <div className="flex flex-col items-stretch text-white text-sm">
             <div className="text-lg text-center text-white opacity-80">
               GBO Studio
             </div>
             <div className="font-sm font-thin text-white opacity-80">
-              <p className="underline mt-[33px]">OFFICE HOURS</p>
+              <p className="contact-right-subtitle">OFFICE HOURS</p>
               <p className="flex justify-between mt-[10px]">
                 <span>MON</span>
                 <span>FRI</span>
@@ -54,11 +57,13 @@ export default function Footer() {
         </div>
       </div>
       <div className="container flex items-center justify-start bg-background h-[150px]">
-        <p className="text-black opacity-40">Copyright © 2025 GBO Studio</p>
+        <p className="text-black  text-sm opacity-40">
+          Copyright © 2025 GBO Studio
+        </p>
         <div className="px-[12px]">
           <Image src={ellipse} alt="ellipse" />
         </div>
-        <div className="flex gap-[8px] opacity-40">
+        <div className="flex gap-[8px] opacity-40 text-sm">
           <span className="text-black">HOME</span>
           <span className="text-black">SERVICE</span>
           <span className="text-black">PORTPOLIO</span>

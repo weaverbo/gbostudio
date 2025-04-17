@@ -19,8 +19,23 @@ div {
   @apply tracking-tight leading-none;
 }
 
-.container {
-  @apply max-w-[1160px] mx-auto;
+/* 1440px 이상 */
+@media (min-width: 1440px) {
+  .container {
+    @apply mx-auto px-[140px];
+  }
+}
+
+@media (max-width: 1440px) {
+  .container {
+    @apply mx-auto px-[140px];
+  }
+}
+
+@media (max-width: 1279px) {
+  .container {
+    @apply mx-auto px-[70px];
+  }
 }
 
 @layer utilities {
