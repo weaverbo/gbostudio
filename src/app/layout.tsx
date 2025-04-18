@@ -18,6 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // 메타 태그 추가
     <>
       <html lang="en" className={InriaSans.variable}>
         <Head>
