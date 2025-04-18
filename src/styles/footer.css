@@ -106,7 +106,7 @@
   }
 }
 
-@media (max-widht: 330px) {
+@media (max-width: 390px) {
   .contact-container {
     @apply w-full;
   }
@@ -117,5 +117,9 @@
 
   .email-input {
     @apply w-full;
+  }
+
+  .email-submit-button {
+    @apply w-[16px] top-[20px] left-[300px];
   }
 }
