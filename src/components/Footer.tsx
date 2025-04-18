@@ -1,15 +1,14 @@
 import Image from 'next/image';
 
 import arrow_left from '../../public/img/arrow_left.png';
-import ellipse from '../../public/img/blueellipse.png';
 import '../styles/footer.css';
 
 export default function Footer() {
   return (
     <>
       <div className="bg-main">
-        <div className="container flex justify-between items-start py-[72px]">
-          <div>
+        <div className="container contact-container">
+          <div className="contact-left-container">
             <div className="flex gap-[8px] items-center text-white">
               <div className="contact-left-title">LET&apos;S TALK</div>
               <div className="contact-left-text">
@@ -37,7 +36,7 @@ export default function Footer() {
               * 메일주소 남겨주시면 빠른 시일 내에 회신드리겠습니다!
             </p>
           </div>
-          <div className="flex flex-col items-stretch text-white text-sm">
+          <div className="contact-right-container">
             <div className="text-lg text-center text-white opacity-80">
               GBO Studio
             </div>
@@ -56,14 +55,10 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="container flex items-center justify-start bg-background h-[150px]">
-        <p className="text-black  text-sm opacity-40">
-          Copyright © 2025 GBO Studio
-        </p>
-        <div className="px-[12px]">
-          <Image src={ellipse} alt="ellipse" />
-        </div>
-        <div className="flex gap-[8px] opacity-40 text-sm">
+      <div className="container footer-bottom-container">
+        <p className="footer-botton-text">Copyright © 2025 GBO Studio</p>
+        <div className="footer-bottom-marker"></div>
+        <div className="footer-bottom-menu">
           <span className="text-black">HOME</span>
           <span className="text-black">SERVICE</span>
           <span className="text-black">PORTPOLIO</span>

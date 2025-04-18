@@ -14,7 +14,7 @@ export default function Main() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [visibleElements, setVisibleElements] = useState<number[]>([]);
   const [currentScreen, setCurrentScreen] = useState<number>(0);
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const [isMobile, setIsMobile] = useState(false);
 
   const startTextAnimation = () => {
     setVisibleElements([]);
@@ -23,6 +23,7 @@ export default function Main() {
       setTimeout(() => setVisibleElements(prev => [...prev, 1]), 1000),
       setTimeout(() => setVisibleElements(prev => [...prev, 2]), 1500),
       setTimeout(() => setVisibleElements(prev => [...prev, 3]), 2000),
+      setTimeout(() => setVisibleElements(prev => [...prev, 4]), 2500),
     ];
 
     return () => {
@@ -60,6 +61,16 @@ export default function Main() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentScreen]);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div className="overflow-x-hidden">
       <div className="container">
@@ -92,14 +103,16 @@ export default function Main() {
                       >
                         Engineering for connection
                       </p>
-                      <div
+                      <p
                         className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
                       >
-                        <div>Designing the overall user experience</div>
-                        <div className="pt-[4px]">
-                          and behavior with a product or service
-                        </div>
-                      </div>
+                        Designing the overall user experience
+                      </p>
+                      <p
+                        className={`pt-[4px] scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
+                      >
+                        behavior with a product or service
+                      </p>
                     </div>
                     <div className="scroll-dots">
                       <div className="scroll-dot"></div>
@@ -132,8 +145,12 @@ export default function Main() {
                       <p
                         className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
                       >
-                        <div>Choosing the right tools and technologies for</div>
-                        <div className="pt-[4px]">every challenge</div>
+                        Choosing the right tools and technologies for
+                      </p>
+                      <p
+                        className={`pt-[4px] scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                      >
+                        every challenge
                       </p>
                     </div>
                     <div className="scroll-dots">
@@ -162,7 +179,12 @@ export default function Main() {
                       <p
                         className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
                       >
-                        Beyond trends, creating impactful and unique solutions
+                        Beyond trends, creating impactful and unique
+                      </p>
+                      <p
+                        className={`py-[4px] scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                      >
+                        solutions
                       </p>
                       <p
                         className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
@@ -300,12 +322,12 @@ export default function Main() {
             <h1 className="section-title">SERVICES</h1>
             <div className="marker"></div>
           </div>
-          <div className="relative mt-[102px] mb-[280px]">
+          <div className="service-container">
             <div
               className="overflow-x-scroll overflow-y-scroll scrollbar-hide w-screen"
               ref={scrollContainerRef}
             >
-              <ul className="flex gap-[24px] w-max pr-[270px]">
+              <ul className="service-card-container">
                 <li className="service-card">
                   <div className="service-card-number">1</div>
                   <div>
@@ -417,7 +439,7 @@ export default function Main() {
           <div className="mt-[72px]">
             <h2 className="portfolio-section-subtitle">LATEST WORK</h2>
             <h3 className="portfolio-section-text">Chat App website</h3>
-            <div className="mt-[16px] mb-[140px]">
+            <div className="portfolio-section-image-container">
               <Image
                 className="shadow-[0_0_30px_rgba(0,0,0,0.2)]"
                 src={chat_app}
