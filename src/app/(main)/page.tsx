@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import StyledLink from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 
 import chat_app from '../../../public/img/chat_app.png';
 import team from '../../../public/img/team.png';
