@@ -7,9 +7,7 @@ import '../../../styles/portfoliodetail.css';
 export default function PortpolioDetail() {
   return (
     <div className="container">
-      <p className="mt-[163px] mb-[10px] font-main opacity-40">
-        PROJECT SHOWCASE
-      </p>
+      <p className="portfolio-detail-text">PROJECT SHOWCASE</p>
       <h1 className="portfolio-detail-title">TEAM WEBSITE</h1>
       <p className="portfolio-detail-description">
         A full website design and build for a concept team collaboration
@@ -19,6 +17,7 @@ export default function PortpolioDetail() {
       </p>
       <div className="marker-container">
         <StyledLink
+          className="marker-link"
           href={'https://team-tau-seven.vercel.app/'}
           style={{ textShadow: '0 4px 4px rgba(0, 0, 0, 0.2)' }}
         >
@@ -27,7 +26,7 @@ export default function PortpolioDetail() {
         <div className="marker"></div>
       </div>
       <Image
-        className="mt-[72px] mb-[140px]"
+        className="portfolio-detail-image"
         src={team_portpolio_detail}
         alt="team_portpolio_detail"
       />

@@ -33,7 +33,7 @@ export default function RootLayout({
           {children}
           <StyleLink
             href="/"
-            className="w-[120px] h-[120px] rounded-full bg-submain text-main font-bold text-xl flex items-center justify-center flex-col fixed bottom-[50px] right-[50px] z-50"
+            className="w-[50px] h-[50px] rounded-full bg-submain text-main font-bold text-xs flex items-center justify-center flex-col fixed bottom-[50px] right-[50px] z-50"
           >
             <span>1:1</span>
             <span>talk</span>

@@ -79,7 +79,7 @@ export default function Header() {
         </>
       ) : (
         <>
-          <div className="container flex justify-between items-center text-main pt-[23px]">
+          <div className="container flex justify-between items-center text-main pt-[23px] py-[23px]">
             <StyledLink href={'/'} className="text-2xl font-bold">
               GBO STUDIO
             </StyledLink>
