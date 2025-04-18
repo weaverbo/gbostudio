@@ -1,4 +1,5 @@
 import { Inria_Sans } from 'next/font/google';
+import Head from 'next/head';
 import StyleLink from 'next/link';
 
 import Footer from '../components/Footer';
@@ -19,6 +20,12 @@ export default function RootLayout({
   return (
     <>
       <html lang="en" className={InriaSans.variable}>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+        </Head>
         <body className="font-InriaSans relative">
           <Header />
           {children}
