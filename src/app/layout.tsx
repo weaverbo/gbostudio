@@ -18,7 +18,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // 메타 태그 추가
     <>
       <html lang="en" className={InriaSans.variable}>
         <Head>
@@ -28,11 +27,13 @@ export default function RootLayout({
           />
         </Head>
         <body className="font-InriaSans relative">
+          <link rel="icon" href="./favicon.png" />
+          <title>GBO STUDIO</title>
           <Header />
           {children}
           <StyleLink
             href="/"
-            className="w-[120px] h-[120px] rounded-full bg-submain text-main font-bold text-xl flex items-center justify-center flex-col fixed bottom-[50px] right-[100px] z-50"
+            className="w-[120px] h-[120px] rounded-full bg-submain text-main font-bold text-xl flex items-center justify-center flex-col fixed bottom-[50px] right-[50px] z-50"
           >
             <span>1:1</span>
             <span>talk</span>

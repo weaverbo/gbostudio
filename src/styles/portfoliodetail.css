@@ -5,3 +5,30 @@
 .marker {
   @apply mt-[12px] ml-[8px] w-[10px] h-[10px] bg-[#FFCD00] rounded-full content-[''] shadow-[0_2px_8px_rgba(0,0,0,0.2)];
 }
+
+.portfolio-detail-title {
+  @apply text-5xl text-main font-bold leading-none;
+}
+
+.portfolio-detail-description {
+  @apply w-[720px] h-[129px] text-xl text-main mt-[32px] leading-[1.8];
+}
+
+@media (max-width: 1024px) {
+  .portfolio-detail-title {
+    @apply text-[80px];
+  }
+
+  .portfolio-detail-description {
+    @apply text-lg;
+  }
+}
+
+@media (max-width: 780px) {
+  .portfolio-detail-title {
+    @apply text-[48px];
+  }
+}
+
+@media (max-width: 580px) {
+}

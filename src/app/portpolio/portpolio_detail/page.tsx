@@ -7,11 +7,11 @@ import '../../../styles/portfoliodetail.css';
 export default function PortpolioDetail() {
   return (
     <div className="container">
-      <p className="mt-[163px] font-main opacity-40">PROJECT SHOWCASE</p>
-      <h1 className="text-5xl text-main font-bold leading-none">
-        TEAM WEBSITE
-      </h1>
-      <p className="w-[720px] h-[129px] text-xl text-main mt-[32px] leading-[1.8]">
+      <p className="mt-[163px] mb-[10px] font-main opacity-40">
+        PROJECT SHOWCASE
+      </p>
+      <h1 className="portfolio-detail-title">TEAM WEBSITE</h1>
+      <p className="portfolio-detail-description">
         A full website design and build for a concept team collaboration
         platform. This website also includes a beautiful blog. I have built the
         website and the blog in Webflow which has one of the best CMS for blog
