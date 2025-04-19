@@ -147,7 +147,7 @@ export default function Main() {
                         Choosing the right tools and technologies for
                       </p>
                       <p
-                        className={`pt-[4px] scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                        className={`pt-[4px] scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
                       >
                         every challenge
                       </p>
@@ -186,7 +186,7 @@ export default function Main() {
                         solutions
                       </p>
                       <p
-                        className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                        className={`scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
                       >
                         Building solutions through continuous user interaction
                       </p>
@@ -229,7 +229,7 @@ export default function Main() {
                         Engineering for connection
                       </p>
                       <p
-                        className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                        className={`scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
                       >
                         Designing the overall user experience and behavior with
                         a product or service
