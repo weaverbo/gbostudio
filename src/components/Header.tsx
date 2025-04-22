@@ -72,8 +72,8 @@ export default function Header({
               </ul>
             </div>
           ) : (
-            <div className="fixed">
-              <div className="container flex justify-between items-center text-main pt-[23px] fixed">
+            <div className="fixed w-full bg-background h-[82px] z-50">
+              <div className="container flex justify-between items-center text-main pt-[23px]">
                 <StyledLink href={'/'} className="text-2xl font-bold">
                   GBO STUDIO
                 </StyledLink>
@@ -89,8 +89,8 @@ export default function Header({
         </>
       ) : (
         <>
-          <div className="fixed w-full">
-            <div className="container flex justify-between items-center text-main pt-[23px] py-[23px] bg-[] d">
+          <div className="fixed w-full bg-background h-[82px] z-50">
+            <div className="container flex justify-between items-center text-main pt-[23px] py-[23px] ">
               <StyledLink href={'/'} className="text-2xl font-bold">
                 GBO STUDIO
               </StyledLink>

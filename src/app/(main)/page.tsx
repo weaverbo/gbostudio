@@ -14,6 +14,7 @@ export default function Main() {
   const [visibleElements, setVisibleElements] = useState<number[]>([]);
   const [currentScreen, setCurrentScreen] = useState<number>(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const startTextAnimation = () => {
     setVisibleElements([]);
@@ -30,35 +31,58 @@ export default function Main() {
     };
   };
 
-  useEffect(() => {
-    const cleanup = startTextAnimation();
-    return cleanup;
-  }, []);
+  // useEffect(() => {
+  //   const cleanup = startTextAnimation();
+  //   return cleanup;
+  // }, []);
 
   useEffect(() => {
     const cleanup = startTextAnimation();
     return cleanup;
   }, [currentScreen]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      console.log(scrollPosition);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const scrollPosition = window.scrollY;
+  //     console.log(scrollPosition);
 
-      if (scrollPosition > 17.5 && currentScreen === 0) {
-        setCurrentScreen(1);
-      } else if (scrollPosition <= 17.5 && currentScreen === 1) {
-        setCurrentScreen(0);
-      } else if (scrollPosition > 150 && currentScreen === 1) {
-        setCurrentScreen(2);
-      } else if (scrollPosition <= 150 && currentScreen === 2) {
-        setCurrentScreen(1);
+  //     if (scrollPosition > 17.5 && currentScreen === 0) {
+  //       setCurrentScreen(1);
+  //     } else if (scrollPosition <= 17.5 && currentScreen === 1) {
+  //       setCurrentScreen(0);
+  //     } else if (scrollPosition > 150 && currentScreen === 1) {
+  //       setCurrentScreen(2);
+  //     } else if (scrollPosition <= 150 && currentScreen === 2) {
+  //       setCurrentScreen(1);
+  //     }
+  //   };
+
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, [currentScreen]);
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+
+      if (isAnimating) return;
+
+      setIsAnimating(true);
+
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 1000); // 1초간 연타 방지
+
+      if (e.deltaY > 0 && currentScreen < 2) {
+        setCurrentScreen(prev => prev + 1);
+      } else if (e.deltaY < 0 && currentScreen > 0) {
+        setCurrentScreen(prev => prev - 1);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentScreen]);
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWheel);
+  }, [currentScreen, isAnimating]);
 
   useEffect(() => {
     const checkMobile = () => {
