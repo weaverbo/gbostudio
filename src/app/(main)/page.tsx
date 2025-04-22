@@ -16,6 +16,8 @@ export default function Main() {
   const [isMobile, setIsMobile] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const scrollsectionRef = useRef<HTMLDivElement>(null);
+
   const startTextAnimation = () => {
     setVisibleElements([]);
     const timers = [
@@ -26,20 +28,42 @@ export default function Main() {
       setTimeout(() => setVisibleElements(prev => [...prev, 4]), 2500),
     ];
 
+    setIsAnimating(true);
+
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 2500);
+
     return () => {
       timers.forEach(timer => clearTimeout(timer));
     };
   };
 
-  // useEffect(() => {
-  //   const cleanup = startTextAnimation();
-  //   return cleanup;
-  // }, []);
-
   useEffect(() => {
     const cleanup = startTextAnimation();
     return cleanup;
   }, [currentScreen]);
+
+  useEffect(() => {
+    const handleScroll = (e: WheelEvent) => {
+      const scrollsection = scrollsectionRef.current;
+      if (!scrollsection || !scrollsection.contains(e.target as Node)) return;
+
+      if (isAnimating) {
+        e.preventDefault();
+        return;
+      }
+
+      if (e.deltaY > 0 && currentScreen < 2) {
+        setCurrentScreen(prev => prev + 1);
+      } else if (e.deltaY < 0 && currentScreen > 0) {
+        setCurrentScreen(prev => prev - 1);
+      }
+    };
+
+    window.addEventListener('wheel', handleScroll, { passive: false });
+    return () => window.removeEventListener('wheel', handleScroll);
+  }, [isAnimating, currentScreen]);
 
   // useEffect(() => {
   //   const handleScroll = () => {
@@ -62,29 +86,6 @@ export default function Main() {
   // }, [currentScreen]);
 
   useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-
-      if (isAnimating) return;
-
-      setIsAnimating(true);
-
-      setTimeout(() => {
-        setIsAnimating(false);
-      }, 1000); // 1초간 연타 방지
-
-      if (e.deltaY > 0 && currentScreen < 2) {
-        setCurrentScreen(prev => prev + 1);
-      } else if (e.deltaY < 0 && currentScreen > 0) {
-        setCurrentScreen(prev => prev - 1);
-      }
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    return () => window.removeEventListener('wheel', handleWheel);
-  }, [currentScreen, isAnimating]);
-
-  useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.matchMedia('(max-width: 768px)').matches);
     };
@@ -97,7 +98,7 @@ export default function Main() {
   return (
     <div className="overflow-x-hidden">
       <div className="container">
-        <div className="h-[900px] mt-[82px] relative">
+        <div className="h-[900px] mt-[82px] relative" ref={scrollsectionRef}>
           {isMobile ? (
             <div ref={scrollContainerRef} style={{ scrollBehavior: 'smooth' }}>
               <AnimatePresence mode="wait">
