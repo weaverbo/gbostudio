@@ -2,8 +2,6 @@ import { Inria_Sans } from 'next/font/google';
 import Head from 'next/head';
 import StyleLink from 'next/link';
 
-import Footer from '../components/Footer';
-import Header from '../components/Header';
 import '../styles/globals.css';
 
 const InriaSans = Inria_Sans({
@@ -29,7 +27,7 @@ export default function RootLayout({
         <body className="font-InriaSans relative">
           <link rel="icon" href="./favicon.png" />
           <title>GBO STUDIO</title>
-          <Header />
+
           {children}
           <StyleLink
             href="/"
@@ -38,7 +36,6 @@ export default function RootLayout({
             <span>1:1</span>
             <span>talk</span>
           </StyleLink>
-          <Footer />
         </body>
       </html>
     </>

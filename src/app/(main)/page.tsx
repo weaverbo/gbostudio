@@ -73,7 +73,7 @@ export default function Main() {
   return (
     <div className="overflow-x-hidden">
       <div className="container">
-        <div className="h-[900px] relative">
+        <div className="h-[900px] mt-[82px] relative">
           {isMobile ? (
             <div ref={scrollContainerRef} style={{ scrollBehavior: 'smooth' }}>
               <AnimatePresence mode="wait">

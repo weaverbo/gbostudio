@@ -1,12 +1,13 @@
 import Image from 'next/image';
+import { forwardRef } from 'react';
 
 import arrow_left from '../../public/img/arrow_left.png';
 import '../styles/footer.css';
 
-export default function Footer() {
+const Footer = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <>
-      <div className="bg-main">
+      <div className="bg-main" ref={ref}>
         <div className="container contact-container">
           <div className="contact-left-container">
             <div className="flex gap-[8px] items-center text-white">
@@ -66,4 +67,6 @@ export default function Footer() {
       </div>
     </>
   );
-}
+});
+
+export default Footer;
