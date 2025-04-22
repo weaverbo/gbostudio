@@ -1,6 +1,5 @@
 'use client';
 
-import { div } from 'framer-motion/client';
 import Image from 'next/image';
 import StyledLink from 'next/link';
 import { useEffect, useState } from 'react';
