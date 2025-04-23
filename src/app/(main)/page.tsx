@@ -129,23 +129,13 @@ export default function Main() {
   // }, [isAnimating, currentScreen]);
 
   useEffect(() => {
-    const handleScroll = (e: WheelEvent | TouchEvent) => {
+    const handleWheel = (e: WheelEvent) => {
       const scrollSection = scrollsectionRef.current;
       if (!scrollSection) return;
 
-      // WheelEvent와 TouchEvent를 구분
-      let clientY: number | undefined;
-
-      if (e instanceof WheelEvent) {
-        clientY = e.clientY;
-      } else if (e instanceof TouchEvent) {
-        clientY = e.touches[0]?.clientY; // 첫 번째 터치의 clientY 값
-      }
-
-      if (clientY === undefined) return;
-
       const bounds = scrollSection.getBoundingClientRect();
-      const isInsideSection = bounds.top <= clientY && clientY <= bounds.bottom;
+      const isInsideSection =
+        bounds.top <= e.clientY && e.clientY <= bounds.bottom;
 
       if (!isInsideSection) return;
 
@@ -154,21 +144,43 @@ export default function Main() {
         return;
       }
 
-      if (e instanceof WheelEvent) {
-        if (e.deltaY > 0 && currentScreen < 2) {
-          setCurrentScreen(prev => prev + 1);
-        } else if (e.deltaY < 0 && currentScreen > 0) {
-          setCurrentScreen(prev => prev - 1);
-        }
+      if (e.deltaY > 0 && currentScreen < 2) {
+        setCurrentScreen(prev => prev + 1);
+      } else if (e.deltaY < 0 && currentScreen > 0) {
+        setCurrentScreen(prev => prev - 1);
       }
     };
 
-    window.addEventListener('wheel', handleScroll, { passive: false });
-    window.addEventListener('touchmove', handleScroll, { passive: false });
+    const handleTouch = (e: TouchEvent) => {
+      const scrollSection = scrollsectionRef.current;
+      if (!scrollSection) return;
+
+      const bounds = scrollSection.getBoundingClientRect();
+      const isInsideSection =
+        bounds.top <= e.touches[0].clientY &&
+        e.touches[0].clientY <= bounds.bottom;
+
+      if (!isInsideSection) return;
+
+      if (isAnimating) {
+        e.preventDefault();
+        return;
+      }
+
+      const touchMove = e.changedTouches[0].clientY - e.touches[0].clientY;
+      if (touchMove > 0 && currentScreen < 2) {
+        setCurrentScreen(prev => prev + 1);
+      } else if (touchMove < 0 && currentScreen > 0) {
+        setCurrentScreen(prev => prev - 1);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouch, { passive: false });
 
     return () => {
-      window.removeEventListener('wheel', handleScroll);
-      window.removeEventListener('touchmove', handleScroll);
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouch);
     };
   }, [isAnimating, currentScreen]);
   // useEffect(() => {
