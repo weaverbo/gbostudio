@@ -57,8 +57,7 @@ export default function Header({
                   </StyledLink>
                 </li>
                 <li>
-                  <StyledLink
-                    href="/"
+                  <button
                     className="text-2xl"
                     onClick={() => {
                       setIsMenuOpen(false);
@@ -66,7 +65,7 @@ export default function Header({
                     }}
                   >
                     CONTACT
-                  </StyledLink>
+                  </button>
                 </li>
               </ul>
             </div>

@@ -10,13 +10,15 @@ import team from '../../../public/img/team.png';
 import '../../styles/main.css';
 
 export default function Main() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [visibleElements, setVisibleElements] = useState<number[]>([]);
   const [currentScreen, setCurrentScreen] = useState<number>(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isFixed, setIsFixed] = useState(false);
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollsectionRef = useRef<HTMLDivElement>(null);
+  const harmonySectionRef = useRef<HTMLDivElement>(null);
 
   const startTextAnimation = () => {
     setVisibleElements([]);
@@ -29,9 +31,11 @@ export default function Main() {
     ];
 
     setIsAnimating(true);
+    setIsFixed(true);
 
     setTimeout(() => {
       setIsAnimating(false);
+      setIsFixed(false);
     }, 2500);
 
     return () => {
@@ -41,13 +45,61 @@ export default function Main() {
 
   useEffect(() => {
     const cleanup = startTextAnimation();
+
+    const scrollsection = scrollsectionRef.current;
+    if (scrollsection) {
+      const rect = scrollsection.getBoundingClientRect();
+      const isInView =
+        rect.top <= 50 && rect.bottom >= window.innerHeight * 0.5;
+
+      if (!isAnimating && isInView && scrollsection) {
+        window.scrollTo({ top: scrollsection.offsetTop, behavior: 'auto' });
+      }
+    }
+
     return cleanup;
   }, [currentScreen]);
 
   useEffect(() => {
+    if (currentScreen === 2 && harmonySectionRef.current) {
+      window.scrollTo({
+        top: harmonySectionRef.current.offsetTop - 50,
+        behavior: 'smooth',
+      });
+    }
+  }, [currentScreen]);
+
+  // useEffect(() => {
+  //   const handleScroll = (e: WheelEvent) => {
+  //     const scrollsection = scrollsectionRef.current;
+  //     if (!scrollsection || !scrollsection.contains(e.target as Node)) return;
+
+  //     if (isAnimating) {
+  //       e.preventDefault();
+  //       return;
+  //     }
+
+  //     if (e.deltaY > 0 && currentScreen < 2) {
+  //       setCurrentScreen(prev => prev + 1);
+  //     } else if (e.deltaY < 0 && currentScreen > 0) {
+  //       setCurrentScreen(prev => prev - 1);
+  //     }
+  //   };
+
+  //   window.addEventListener('wheel', handleScroll, { passive: false });
+  //   return () => window.removeEventListener('wheel', handleScroll);
+  // }, [isAnimating, currentScreen]);
+
+  useEffect(() => {
     const handleScroll = (e: WheelEvent) => {
-      const scrollsection = scrollsectionRef.current;
-      if (!scrollsection || !scrollsection.contains(e.target as Node)) return;
+      const scrollSection = scrollsectionRef.current;
+      if (!scrollSection) return;
+
+      const bounds = scrollSection.getBoundingClientRect();
+      const isInsideSection =
+        bounds.top <= e.clientY && e.clientY <= bounds.bottom;
+
+      if (!isInsideSection) return;
 
       if (isAnimating) {
         e.preventDefault();
@@ -95,10 +147,25 @@ export default function Main() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  useEffect(() => {
+    if (isAnimating) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isAnimating]);
+
   return (
     <div className="overflow-x-hidden">
       <div className="container">
-        <div className="h-[900px] mt-[82px] relative" ref={scrollsectionRef}>
+        <div
+          ref={scrollsectionRef}
+          className={`h-[900px] mt-[82px] relative ${isFixed ? 'fixed top-0 left-0 w-full z-50' : ''}`}
+        >
           {isMobile ? (
             <div ref={scrollContainerRef} style={{ scrollBehavior: 'smooth' }}>
               <AnimatePresence mode="wait">
@@ -186,6 +253,7 @@ export default function Main() {
                 )}
                 {currentScreen === 2 && (
                   <motion.div
+                    ref={harmonySectionRef}
                     className="scroll-section"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -347,10 +415,7 @@ export default function Main() {
             <div className="marker"></div>
           </div>
           <div className="service-container">
-            <div
-              className="overflow-x-scroll overflow-y-scroll scrollbar-hide w-screen"
-              ref={scrollContainerRef}
-            >
+            <div className="overflow-x-scroll scrollbar-hide w-screen">
               <ul className="service-card-container">
                 <li className="service-card">
                   <div className="service-card-number">1</div>

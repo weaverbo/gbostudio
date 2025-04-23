@@ -47,7 +47,7 @@
 }
 
 .service-card-container {
-  @apply flex gap-[24px] w-max pr-[270px];
+  @apply flex gap-[24px] w-max pr-[165px];
 }
 
 .service-card {

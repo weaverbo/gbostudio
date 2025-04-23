@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import arrow_left from '../../public/img/arrow_left.png';
 import '../styles/footer.css';
 
-const Footer = forwardRef<HTMLDivElement>((props, ref) => {
+const Footer = forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <>
       <div className="bg-main" ref={ref}>

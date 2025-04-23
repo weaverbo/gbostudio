@@ -104,7 +104,7 @@
 
 @media (max-width: 580px) {
   .portfolio-container-title {
-    @apply text-[56px];
+    @apply text-[56px] pl-[5px];
   }
 
   .portpolio-title {
