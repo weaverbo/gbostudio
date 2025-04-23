@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <>
       <Header onContactClick={scrollToFooter} />
-      {children}
+      <div className="pt-[82px]">{children}</div>
       <Footer ref={footerRef} />
     </>
   );

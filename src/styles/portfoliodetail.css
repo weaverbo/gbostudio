@@ -87,6 +87,10 @@
 }
 
 @media (max-width: 580px) {
+  .portfolio-detail-text {
+    @apply pt-[42px];
+  }
+
   .portfolio-detail-title {
     @apply text-[36px];
   }

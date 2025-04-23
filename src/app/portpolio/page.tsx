@@ -13,7 +13,7 @@ import '../../styles/portfolio.css';
 
 export default function Portpolio() {
   return (
-    <div className="container w-full">
+    <div className="container w-full ">
       <h1 className="portfolio-container-title">PORTFOLIO</h1>
       <div className="portfolio-container">
         <div className="portpolio-img-container">

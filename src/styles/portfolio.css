@@ -44,7 +44,7 @@
 
 @media (max-width: 1280px) {
   .portfolio-container-title {
-    @apply text-[96px] pt-[72px];
+    @apply text-[96px] pt-[163px];
   }
 
   .portpolio-title {
@@ -104,7 +104,7 @@
 
 @media (max-width: 580px) {
   .portfolio-container-title {
-    @apply text-[56px] pl-[5px];
+    @apply text-[56px] pl-[5px] pt-[42px];
   }
 
   .portpolio-title {
