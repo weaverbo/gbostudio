@@ -70,39 +70,7 @@ export default function Main() {
   }, [currentScreen]);
 
   // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsMobile(window.matchMedia('(max-width: 767px)').matches);
-  //   };
-
-  //   handleResize();
-  //   window.addEventListener('resize', handleResize);
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleScroll = (e: WheelEvent) => {
-  //     const scrollsection = scrollsectionRef.current;
-  //     if (!scrollsection || !scrollsection.contains(e.target as Node)) return;
-
-  //     if (isAnimating) {
-  //       e.preventDefault();
-  //       return;
-  //     }
-
-  //     if (e.deltaY > 0 && currentScreen < 2) {
-  //       setCurrentScreen(prev => prev + 1);
-  //     } else if (e.deltaY < 0 && currentScreen > 0) {
-  //       setCurrentScreen(prev => prev - 1);
-  //     }
-  //   };
-
-  //   window.addEventListener('wheel', handleScroll, { passive: false });
-  //   return () => window.removeEventListener('wheel', handleScroll);
-  // }, [isAnimating, currentScreen]);
-
-  // holding!
-  // useEffect(() => {
-  //   const handleScroll = (e: WheelEvent) => {
+  //   const handleWheel = (e: WheelEvent) => {
   //     const scrollSection = scrollsectionRef.current;
   //     if (!scrollSection) return;
 
@@ -124,84 +92,58 @@ export default function Main() {
   //     }
   //   };
 
-  //   window.addEventListener('wheel', handleScroll, { passive: false });
-  //   return () => window.removeEventListener('wheel', handleScroll);
-  // }, [isAnimating, currentScreen]);
+  //   const handleTouch = (e: TouchEvent) => {
+  //     const scrollSection = scrollsectionRef.current;
+  //     if (!scrollSection) return;
 
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      const scrollSection = scrollsectionRef.current;
-      if (!scrollSection) return;
+  //     const bounds = scrollSection.getBoundingClientRect();
+  //     const isInsideSection =
+  //       bounds.top <= e.touches[0].clientY &&
+  //       e.touches[0].clientY <= bounds.bottom;
 
-      const bounds = scrollSection.getBoundingClientRect();
-      const isInsideSection =
-        bounds.top <= e.clientY && e.clientY <= bounds.bottom;
+  //     if (!isInsideSection) return;
 
-      if (!isInsideSection) return;
+  //     if (isAnimating) {
+  //       e.preventDefault();
+  //       return;
+  //     }
 
-      if (isAnimating) {
-        e.preventDefault();
-        return;
-      }
-
-      if (e.deltaY > 0 && currentScreen < 2) {
-        setCurrentScreen(prev => prev + 1);
-      } else if (e.deltaY < 0 && currentScreen > 0) {
-        setCurrentScreen(prev => prev - 1);
-      }
-    };
-
-    const handleTouch = (e: TouchEvent) => {
-      const scrollSection = scrollsectionRef.current;
-      if (!scrollSection) return;
-
-      const bounds = scrollSection.getBoundingClientRect();
-      const isInsideSection =
-        bounds.top <= e.touches[0].clientY &&
-        e.touches[0].clientY <= bounds.bottom;
-
-      if (!isInsideSection) return;
-
-      // if (isAnimating) {
-      //   e.preventDefault();
-      //   return;
-      // }
-
-      const touchMove = e.changedTouches[0].clientY - e.touches[0].clientY;
-      if (touchMove > 0 && currentScreen < 2) {
-        setCurrentScreen(prev => prev + 1);
-      } else if (touchMove < 0 && currentScreen > 0) {
-        setCurrentScreen(prev => prev - 1);
-      }
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouch, { passive: false });
-
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouch);
-    };
-  }, [isAnimating, currentScreen]);
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollPosition = window.scrollY;
-  //     console.log(scrollPosition);
-
-  //     if (scrollPosition > 17.5 && currentScreen === 0) {
-  //       setCurrentScreen(1);
-  //     } else if (scrollPosition <= 17.5 && currentScreen === 1) {
-  //       setCurrentScreen(0);
-  //     } else if (scrollPosition > 150 && currentScreen === 1) {
-  //       setCurrentScreen(2);
-  //     } else if (scrollPosition <= 150 && currentScreen === 2) {
-  //       setCurrentScreen(1);
+  //     const touchMove = e.changedTouches[0].clientY - e.touches[0].clientY;
+  //     if (touchMove > 0 && currentScreen < 2) {
+  //       setCurrentScreen(prev => prev + 1);
+  //     } else if (touchMove < 0 && currentScreen > 0) {
+  //       setCurrentScreen(prev => prev - 1);
   //     }
   //   };
 
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, [currentScreen]);
+  //   window.addEventListener('wheel', handleWheel, { passive: false });
+  //   window.addEventListener('touchstart', handleTouch, { passive: false });
+
+  //   return () => {
+  //     window.removeEventListener('wheel', handleWheel);
+  //     window.removeEventListener('touchstart', handleTouch);
+  //   };
+  // }, [isAnimating, currentScreen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      console.log(scrollPosition);
+
+      if (scrollPosition > 17.5 && currentScreen === 0) {
+        setCurrentScreen(1);
+      } else if (scrollPosition <= 17.5 && currentScreen === 1) {
+        setCurrentScreen(0);
+      } else if (scrollPosition > 150 && currentScreen === 1) {
+        setCurrentScreen(2);
+      } else if (scrollPosition <= 150 && currentScreen === 2) {
+        setCurrentScreen(1);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [currentScreen]);
 
   useEffect(() => {
     const checkMobile = () => {
