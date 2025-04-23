@@ -51,7 +51,7 @@ export default function Header({
                     className="text-2xl mb-6"
                     onClick={() => {
                       setIsMenuOpen(false);
-                      handleGoMain;
+                      handleGoMain();
                     }}
                   >
                     HOME
