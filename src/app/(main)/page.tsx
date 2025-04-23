@@ -133,9 +133,19 @@ export default function Main() {
       const scrollSection = scrollsectionRef.current;
       if (!scrollSection) return;
 
+      // WheelEvent와 TouchEvent를 구분
+      let clientY: number | undefined;
+
+      if (e instanceof WheelEvent) {
+        clientY = e.clientY;
+      } else if (e instanceof TouchEvent) {
+        clientY = e.touches[0]?.clientY; // 첫 번째 터치의 clientY 값
+      }
+
+      if (clientY === undefined) return;
+
       const bounds = scrollSection.getBoundingClientRect();
-      const isInsideSection =
-        bounds.top <= e.clientY && e.clientY <= bounds.bottom;
+      const isInsideSection = bounds.top <= clientY && clientY <= bounds.bottom;
 
       if (!isInsideSection) return;
 
@@ -150,32 +160,17 @@ export default function Main() {
         } else if (e.deltaY < 0 && currentScreen > 0) {
           setCurrentScreen(prev => prev - 1);
         }
-      } else if (e instanceof TouchEvent) {
-        const touch = e.changedTouches[0];
-        const deltaY = touch.clientY;
-
-        if (deltaY > 0 && currentScreen < 2) {
-          setCurrentScreen(prev => prev + 1);
-        } else if (deltaY < 0 && currentScreen > 0) {
-          setCurrentScreen(prev => prev - 1);
-        }
       }
     };
 
-    if (isMobile) {
-      window.addEventListener('touchstart', handleScroll, { passive: false });
-      window.addEventListener('touchmove', handleScroll, { passive: false });
-    } else {
-      window.addEventListener('wheel', handleScroll, { passive: false });
-    }
+    window.addEventListener('wheel', handleScroll, { passive: false });
+    window.addEventListener('touchmove', handleScroll, { passive: false });
 
     return () => {
       window.removeEventListener('wheel', handleScroll);
-      window.removeEventListener('touchstart', handleScroll);
       window.removeEventListener('touchmove', handleScroll);
     };
-  }, [isAnimating, currentScreen, isMobile]);
-
+  }, [isAnimating, currentScreen]);
   // useEffect(() => {
   //   const handleScroll = () => {
   //     const scrollPosition = window.scrollY;
