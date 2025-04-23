@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import StyledLink from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import close_icon from '../../public/img/close_icon.png';
@@ -25,6 +26,11 @@ export default function Header({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  const handleGoMain = () => {
+    const router = useRouter();
+    router.reload();
+  };
+
   return (
     <>
       {isMobile ? (
@@ -42,7 +48,10 @@ export default function Header({
                   <StyledLink
                     href="/"
                     className="text-2xl mb-6"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      handleGoMain;
+                    }}
                   >
                     HOME
                   </StyledLink>
@@ -72,7 +81,11 @@ export default function Header({
           ) : (
             <div className="fixed w-full bg-background h-[82px] z-50">
               <div className="container flex justify-between items-center text-main pt-[23px]">
-                <StyledLink href={'/'} className="text-2xl font-bold">
+                <StyledLink
+                  href={'/'}
+                  className="text-2xl font-bold"
+                  onClick={handleGoMain}
+                >
                   GBO STUDIO
                 </StyledLink>
                 <button
@@ -89,7 +102,11 @@ export default function Header({
         <>
           <div className="fixed w-full bg-background h-[82px] z-50">
             <div className="container flex justify-between items-center text-main pt-[23px] py-[23px] ">
-              <StyledLink href={'/'} className="text-2xl font-bold">
+              <StyledLink
+                href={'/'}
+                className="text-2xl font-bold"
+                onClick={handleGoMain}
+              >
                 GBO STUDIO
               </StyledLink>
               <div className="text-xl">

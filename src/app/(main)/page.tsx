@@ -61,6 +61,15 @@ export default function Main() {
   }, [currentScreen]);
 
   // useEffect(() => {
+  //   if (currentScreen === 2 && harmonySectionRef.current) {
+  //     window.scrollTo({
+  //       top: harmonySectionRef.current.offsetTop - 50,
+  //       behavior: 'smooth',
+  //     });
+  //   }
+  // }, [currentScreen]);
+
+  // useEffect(() => {
   //   const handleWheel = (e: WheelEvent) => {
   //     const scrollSection = scrollsectionRef.current;
   //     if (!scrollSection) return;
@@ -118,34 +127,29 @@ export default function Main() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (isAnimating) return; // 애니메이션 중이면 아무것도 하지 않음
-      const scrollPosition = window.scrollY;
-      console.log(scrollPosition);
+      if (isAnimating) return;
 
-      if (scrollPosition > 17.5 && currentScreen === 0) {
+      const scrollPosition = window.scrollY;
+      const designToEngineering = window.innerHeight * 0.01;
+      const engineeringToHarmony = window.innerHeight * 0.02;
+
+      if (scrollPosition > designToEngineering && currentScreen === 0) {
         setCurrentScreen(1);
-      } else if (scrollPosition <= 17.5 && currentScreen === 1) {
+      } else if (scrollPosition <= designToEngineering && currentScreen === 1) {
         setCurrentScreen(0);
-      } else if (scrollPosition > 150 && currentScreen === 1) {
+      } else if (scrollPosition > engineeringToHarmony && currentScreen === 1) {
         setCurrentScreen(2);
-      } else if (scrollPosition <= 150 && currentScreen === 2) {
+      } else if (
+        scrollPosition <= engineeringToHarmony &&
+        currentScreen === 2
+      ) {
         setCurrentScreen(1);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentScreen]);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.matchMedia('(max-width: 768px)').matches);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, [currentScreen, isAnimating]);
 
   useEffect(() => {
     if (isAnimating) {
@@ -158,6 +162,16 @@ export default function Main() {
       document.body.style.overflow = '';
     };
   }, [isAnimating]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <div className="overflow-x-hidden">
