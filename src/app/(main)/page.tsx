@@ -69,15 +69,15 @@ export default function Main() {
     }
   }, [currentScreen]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.matchMedia('(max-width: 768px)').matches);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsMobile(window.matchMedia('(max-width: 767px)').matches);
+  //   };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  //   handleResize();
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
 
   // useEffect(() => {
   //   const handleScroll = (e: WheelEvent) => {
@@ -168,26 +168,6 @@ export default function Main() {
       document.body.style.overflow = '';
     };
   }, [isAnimating]);
-
-  useEffect(() => {
-    if (!isMobile) return;
-
-    const handleMobileScroll = () => {
-      const scrollY = window.scrollY;
-      const screenHeight = window.innerHeight;
-
-      if (scrollY < screenHeight * 0.5) {
-        setCurrentScreen(0);
-      } else if (scrollY < screenHeight * 1.5) {
-        setCurrentScreen(1);
-      } else {
-        setCurrentScreen(2);
-      }
-    };
-
-    window.addEventListener('scroll', handleMobileScroll);
-    return () => window.removeEventListener('scroll', handleMobileScroll);
-  }, [isMobile]);
 
   return (
     <div className="overflow-x-hidden">
