@@ -16,6 +16,8 @@ export default function Header({
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const router = useRouter();
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.matchMedia('(max-width: 580px)').matches);
@@ -27,8 +29,7 @@ export default function Header({
   }, []);
 
   const handleGoMain = () => {
-    const router = useRouter();
-    router.reload();
+    router.push('/');
   };
 
   return (
