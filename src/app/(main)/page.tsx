@@ -162,10 +162,10 @@ export default function Main() {
 
       if (!isInsideSection) return;
 
-      if (isAnimating) {
-        e.preventDefault();
-        return;
-      }
+      // if (isAnimating) {
+      //   e.preventDefault();
+      //   return;
+      // }
 
       const touchMove = e.changedTouches[0].clientY - e.touches[0].clientY;
       if (touchMove > 0 && currentScreen < 2) {
