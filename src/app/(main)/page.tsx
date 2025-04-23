@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import StyledLink from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 import chat_app from '../../../public/img/chat_app.png';
@@ -19,6 +20,8 @@ export default function Main() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollsectionRef = useRef<HTMLDivElement>(null);
   const harmonySectionRef = useRef<HTMLDivElement>(null);
+
+  const pathname = usePathname();
 
   const startTextAnimation = () => {
     setVisibleElements([]);
@@ -59,71 +62,6 @@ export default function Main() {
 
     return cleanup;
   }, [currentScreen]);
-
-  // useEffect(() => {
-  //   if (currentScreen === 2 && harmonySectionRef.current) {
-  //     window.scrollTo({
-  //       top: harmonySectionRef.current.offsetTop - 50,
-  //       behavior: 'smooth',
-  //     });
-  //   }
-  // }, [currentScreen]);
-
-  // useEffect(() => {
-  //   const handleWheel = (e: WheelEvent) => {
-  //     const scrollSection = scrollsectionRef.current;
-  //     if (!scrollSection) return;
-
-  //     const bounds = scrollSection.getBoundingClientRect();
-  //     const isInsideSection =
-  //       bounds.top <= e.clientY && e.clientY <= bounds.bottom;
-
-  //     if (!isInsideSection) return;
-
-  //     if (isAnimating) {
-  //       e.preventDefault();
-  //       return;
-  //     }
-
-  //     if (e.deltaY > 0 && currentScreen < 2) {
-  //       setCurrentScreen(prev => prev + 1);
-  //     } else if (e.deltaY < 0 && currentScreen > 0) {
-  //       setCurrentScreen(prev => prev - 1);
-  //     }
-  //   };
-
-  //   const handleTouch = (e: TouchEvent) => {
-  //     const scrollSection = scrollsectionRef.current;
-  //     if (!scrollSection) return;
-
-  //     const bounds = scrollSection.getBoundingClientRect();
-  //     const isInsideSection =
-  //       bounds.top <= e.touches[0].clientY &&
-  //       e.touches[0].clientY <= bounds.bottom;
-
-  //     if (!isInsideSection) return;
-
-  //     if (isAnimating) {
-  //       e.preventDefault();
-  //       return;
-  //     }
-
-  //     const touchMove = e.changedTouches[0].clientY - e.touches[0].clientY;
-  //     if (touchMove > 0 && currentScreen < 2) {
-  //       setCurrentScreen(prev => prev + 1);
-  //     } else if (touchMove < 0 && currentScreen > 0) {
-  //       setCurrentScreen(prev => prev - 1);
-  //     }
-  //   };
-
-  //   window.addEventListener('wheel', handleWheel, { passive: false });
-  //   window.addEventListener('touchstart', handleTouch, { passive: false });
-
-  //   return () => {
-  //     window.removeEventListener('wheel', handleWheel);
-  //     window.removeEventListener('touchstart', handleTouch);
-  //   };
-  // }, [isAnimating, currentScreen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -172,6 +110,12 @@ export default function Main() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  useEffect(() => {
+    if (pathname === '/') {
+      startTextAnimation();
+    }
+  }, [pathname]);
 
   return (
     <div className="overflow-x-hidden">

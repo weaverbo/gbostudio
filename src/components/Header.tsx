@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import StyledLink from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import close_icon from '../../public/img/close_icon.png';
@@ -16,8 +15,6 @@ export default function Header({
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const router = useRouter();
-
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.matchMedia('(max-width: 580px)').matches);
@@ -27,10 +24,6 @@ export default function Header({
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  const handleGoMain = () => {
-    router.push('/');
-  };
 
   return (
     <>
@@ -49,10 +42,7 @@ export default function Header({
                   <StyledLink
                     href="/"
                     className="text-2xl mb-6"
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      handleGoMain();
-                    }}
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     HOME
                   </StyledLink>
@@ -82,11 +72,7 @@ export default function Header({
           ) : (
             <div className="fixed w-full bg-background h-[82px] z-50">
               <div className="container flex justify-between items-center text-main pt-[23px]">
-                <StyledLink
-                  href={'/'}
-                  className="text-2xl font-bold"
-                  onClick={handleGoMain}
-                >
+                <StyledLink href={'/'} className="text-2xl font-bold">
                   GBO STUDIO
                 </StyledLink>
                 <button
@@ -103,11 +89,7 @@ export default function Header({
         <>
           <div className="fixed w-full bg-background h-[82px] z-50">
             <div className="container flex justify-between items-center text-main pt-[23px] py-[23px] ">
-              <StyledLink
-                href={'/'}
-                className="text-2xl font-bold"
-                onClick={handleGoMain}
-              >
+              <StyledLink href={'/'} className="text-2xl font-bold">
                 GBO STUDIO
               </StyledLink>
               <div className="text-xl">
