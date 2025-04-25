@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import StyledLink from 'next/link';
 
-import team_portpolio_detail from '../../../../public/img/team_portfolio_detail.png';
-import '../../../styles/portfoliodetail.css';
+import team_portpolio_detail from '../../../../../public/img/team_portfolio_detail.png';
+import '../../../../styles/portfoliodetail.css';
 
 export default function PortpolioDetail() {
   return (

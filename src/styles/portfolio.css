@@ -52,7 +52,7 @@
   }
 
   .portpolio-img {
-    @apply w-[428px] h-[365px] shadow-[0_0_30px_rgba(0,0,0,0.5)];
+    @apply w-[428px] h-[365px];
   }
 
   .portpolio-last-image {
@@ -89,14 +89,16 @@
     @apply pt-[72px];
   }
 
+  /* 학습 */
   .portfolio-contents-container {
     @apply order-2 md:order-1 flex flex-col items-end;
   }
 
+  /* 여기 부분 이게 최선인지? */
   .portpolio-last-image {
     @apply mb-[0px];
   }
-
+  /* 여기 부분 이게 최선인지? */
   .portfolio-container-last {
     @apply mb-[72px];
   }

@@ -10,6 +10,7 @@ const InriaSans = Inria_Sans({
   weight: ['300', '400', '700'],
 });
 
+// 학습
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,7 +28,6 @@ export default function RootLayout({
         <body className="font-InriaSans relative">
           <link rel="icon" href="./favicon.png" />
           <title>GBO STUDIO</title>
-
           {children}
           <StyleLink
             href="/"

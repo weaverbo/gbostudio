@@ -4,10 +4,10 @@ import { forwardRef } from 'react';
 import arrow_left from '../../public/img/arrow_left.png';
 import '../styles/footer.css';
 
-const Footer = forwardRef<HTMLDivElement>((_, ref) => {
+export default forwardRef<HTMLDivElement>((_, footerRef) => {
   return (
     <>
-      <div className="bg-main" ref={ref}>
+      <div className="bg-main" ref={footerRef}>
         <div className="container contact-container">
           <div className="contact-left-container">
             <div className="flex gap-[8px] items-center text-white">
@@ -68,6 +68,3 @@ const Footer = forwardRef<HTMLDivElement>((_, ref) => {
     </>
   );
 });
-
-Footer.displayName = 'Footer';
-export default Footer;

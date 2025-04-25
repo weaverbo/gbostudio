@@ -11,7 +11,7 @@
 }
 
 .portfolio-detail-title {
-  @apply text-5xl text-main font-bold leading-none;
+  @apply text-5xl text-main font-bold;
 }
 
 .portfolio-detail-description {

@@ -30,7 +30,7 @@ export default function Header({
       {isMobile ? (
         <>
           {isMenuOpen ? (
-            <div className="container bg-white w-full h-full fixed top-0 left-0 z-50">
+            <div className="fixed container bg-white w-full h-full top-0 left-0 z-50">
               <button
                 className="absolute top-6 right-6 text-xl"
                 onClick={() => setIsMenuOpen(false)}

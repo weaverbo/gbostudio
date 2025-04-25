@@ -1,14 +1,15 @@
 'use client';
 
+// 학습
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import StyledLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
-import chat_app from '../../../public/img/chat_app.png';
-import team from '../../../public/img/team.png';
-import '../../styles/main.css';
+import chat_app from '../../../../public/img/chat_app.png';
+import team from '../../../../public/img/team.png';
+import '../../../styles/main.css';
 
 export default function Main() {
   const [visibleElements, setVisibleElements] = useState<number[]>([]);

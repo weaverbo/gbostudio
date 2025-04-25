@@ -1,19 +1,19 @@
+import '@/styles/portfolio.css';
 import Image from 'next/image';
 import StyledLink from 'next/link';
 
-import chat_app_portfolio from '../../../public/img/chat_app_portfolio.png';
-import cryptomoney_portfolio from '../../../public/img/cryptomoney_portfolio.png';
-import hotelbooking_portfolio from '../../../public/img/hotelbooking_portfolio.png';
-import portfolio_portfolio1 from '../../../public/img/portfolio_portfolio1.png';
-import portfolio_portfolio from '../../../public/img/portfolio_portfolio.png';
-import proyoga_portfolio from '../../../public/img/proyoga_portfolio.png';
-import team_portfolio from '../../../public/img/team_portfolio.png';
-import travel_portfolio from '../../../public/img/travel_portfolio.png';
-import '../../styles/portfolio.css';
+import chat_app_portfolio from '../../../../public/img/chat_app_portfolio.png';
+import cryptomoney_portfolio from '../../../../public/img/cryptomoney_portfolio.png';
+import hotelbooking_portfolio from '../../../../public/img/hotelbooking_portfolio.png';
+import portfolio_portfolio1 from '../../../../public/img/portfolio_portfolio1.png';
+import portfolio_portfolio from '../../../../public/img/portfolio_portfolio.png';
+import proyoga_portfolio from '../../../../public/img/proyoga_portfolio.png';
+import team_portfolio from '../../../../public/img/team_portfolio.png';
+import travel_portfolio from '../../../../public/img/travel_portfolio.png';
 
 export default function Portpolio() {
   return (
-    <div className="container w-full ">
+    <div className="container w-full">
       <h1 className="portfolio-container-title">PORTFOLIO</h1>
       <div className="portfolio-container">
         <div className="portpolio-img-container">
