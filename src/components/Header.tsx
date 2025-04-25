@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import StyledLink from 'next/link';
 import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import close_icon from '../../public/img/close_icon.png';
 import menu_icon from '../../public/img/menu_icon.png';
@@ -12,18 +13,9 @@ export default function Header({
 }: {
   onContactClick?: () => void;
 }) {
-  const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.matchMedia('(max-width: 580px)').matches);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const isMobile = useMediaQuery({ query: '(max-width : 580px)' });
 
   return (
     <>
