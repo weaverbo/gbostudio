@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import StyledLink from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import close_icon from '../../public/img/close_icon.png';

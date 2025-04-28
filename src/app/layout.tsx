@@ -10,7 +10,6 @@ const InriaSans = Inria_Sans({
   weight: ['300', '400', '700'],
 });
 
-// 학습
 export default function RootLayout({
   children,
 }: Readonly<{

@@ -94,11 +94,10 @@
     @apply order-2 md:order-1 flex flex-col items-end;
   }
 
-  /* 여기 부분 이게 최선인지? */
   .portpolio-last-image {
     @apply mb-[0px];
   }
-  /* 여기 부분 이게 최선인지? */
+
   .portfolio-container-last {
     @apply mb-[72px];
   }

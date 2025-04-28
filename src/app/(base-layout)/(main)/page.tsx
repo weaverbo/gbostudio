@@ -1,11 +1,10 @@
 'use client';
 
-// 학습
-import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import StyledLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import chat_app from '../../../../public/img/chat_app.png';
 import team from '../../../../public/img/team.png';
@@ -13,17 +12,20 @@ import '../../../styles/main.css';
 
 export default function Main() {
   const [visibleElements, setVisibleElements] = useState<number[]>([]);
-  const [currentScreen, setCurrentScreen] = useState<number>(0);
-  const [isMobile, setIsMobile] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isFixed, setIsFixed] = useState(false);
-
+  const [currentScreen, setCurrentScreen] = useState<number>(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollsectionRef = useRef<HTMLDivElement>(null);
-  const harmonySectionRef = useRef<HTMLDivElement>(null);
+  const [isMediaQuery, setIsMediaQuery] = useState(false);
 
   const pathname = usePathname();
+  const isMobile = useMediaQuery({ query: '(max-width : 768px)' });
 
+  useEffect(() => {
+    setIsMediaQuery(isMobile);
+  }, [isMobile]);
+
+  // 텍스트 인터랙션
   const startTextAnimation = () => {
     setVisibleElements([]);
     const timers = [
@@ -35,34 +37,15 @@ export default function Main() {
     ];
 
     setIsAnimating(true);
-    setIsFixed(true);
 
     setTimeout(() => {
       setIsAnimating(false);
-      setIsFixed(false);
     }, 2500);
 
     return () => {
       timers.forEach(timer => clearTimeout(timer));
     };
   };
-
-  useEffect(() => {
-    const cleanup = startTextAnimation();
-
-    const scrollsection = scrollsectionRef.current;
-    if (scrollsection) {
-      const rect = scrollsection.getBoundingClientRect();
-      const isInView =
-        rect.top <= 50 && rect.bottom >= window.innerHeight * 0.5;
-
-      if (!isAnimating && isInView && scrollsection) {
-        window.scrollTo({ top: scrollsection.offsetTop, behavior: 'auto' });
-      }
-    }
-
-    return cleanup;
-  }, [currentScreen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,10 +56,13 @@ export default function Main() {
       const engineeringToHarmony = window.innerHeight * 0.02;
 
       if (scrollPosition > designToEngineering && currentScreen === 0) {
+        console.log(currentScreen);
         setCurrentScreen(1);
       } else if (scrollPosition <= designToEngineering && currentScreen === 1) {
+        console.log(currentScreen);
         setCurrentScreen(0);
       } else if (scrollPosition > engineeringToHarmony && currentScreen === 1) {
+        console.log(currentScreen);
         setCurrentScreen(2);
       } else if (
         scrollPosition <= engineeringToHarmony &&
@@ -90,27 +76,33 @@ export default function Main() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentScreen, isAnimating]);
 
+  // 스크롤 제어
+  useEffect(() => {
+    const cleanup = startTextAnimation();
+
+    const scrollsection = scrollsectionRef.current;
+
+    if (scrollsection) {
+      const rect = scrollsection.getBoundingClientRect();
+      const isInView =
+        rect.top <= 50 && rect.bottom >= window.innerHeight * 0.5;
+
+      if (!isAnimating && isInView) {
+        window.scrollTo({ top: scrollsection.offsetTop, behavior: 'auto' });
+      }
+    }
+
+    return cleanup;
+  }, [currentScreen]);
+
+  // 스크롤 제어
   useEffect(() => {
     if (isAnimating) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [isAnimating]);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.matchMedia('(max-width: 768px)').matches);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   useEffect(() => {
     if (pathname === '/') {
@@ -121,249 +113,199 @@ export default function Main() {
   return (
     <div className="overflow-x-hidden">
       <div className="container">
-        <div
-          ref={scrollsectionRef}
-          className={`h-[900px] mt-[82px] relative ${isFixed ? 'fixed top-0 left-0 w-full z-50' : ''}`}
-        >
-          {isMobile ? (
-            <div ref={scrollContainerRef} style={{ scrollBehavior: 'smooth' }}>
-              <AnimatePresence mode="wait">
-                {currentScreen === 0 && (
-                  <motion.div
-                    className="scroll-section"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    style={{ zIndex: 10 }}
+        <div ref={scrollsectionRef} className="h-[900px] mt-[82px] relative">
+          {isMediaQuery ? (
+            <div ref={scrollContainerRef}>
+              {currentScreen === 0 && (
+                <div className="scroll-section">
+                  <h1
+                    className={`scroll-section-title ${visibleElements.includes(0) ? 'opacity-100' : 'opacity-0'}`}
                   >
-                    <h1
-                      className={`scroll-section-title ${visibleElements.includes(0) ? 'opacity-100' : 'opacity-0'}`}
+                    Design
+                  </h1>
+                  <div className="scroll-section-description-container">
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
                     >
-                      Design
-                    </h1>
-                    <div className="scroll-section-description-container">
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Interactive Design
-                      </p>
-                      <p
-                        className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Engineering for connection
-                      </p>
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Designing the overall user experience
-                      </p>
-                      <p
-                        className={`pt-[4px] scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        behavior with a product or service
-                      </p>
-                    </div>
-                    <div className="scroll-dots">
-                      <div className="scroll-dot"></div>
-                      <div className="scroll-dot_other"></div>
-                      <div className="scroll-dot_other"></div>
-                    </div>
-                  </motion.div>
-                )}
-                {currentScreen === 1 && (
-                  <motion.div
-                    className="scroll-section"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    style={{ zIndex: 5 }}
-                  >
-                    <h1 className="scroll-section-title">Engineering</h1>
-                    <div className="scroll-section-description-container">
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Challenges to Solutions
-                      </p>
-                      <p
-                        className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Balancing User Needs & Business Goals
-                      </p>
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Choosing the right tools and technologies for
-                      </p>
-                      <p
-                        className={`pt-[4px] scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        every challenge
-                      </p>
-                    </div>
-                    <div className="scroll-dots">
-                      <div className="scroll-dot_other"></div>
-                      <div className="scroll-dot"></div>
-                      <div className="scroll-dot_other"></div>
-                    </div>
-                  </motion.div>
-                )}
-                {currentScreen === 2 && (
-                  <motion.div
-                    ref={harmonySectionRef}
-                    className="scroll-section"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    style={{ zIndex: 5 }}
-                  >
-                    <h1 className="scroll-section-title">Harmony</h1>
-                    <div className="scroll-section-description-container">
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Design & Developement in Harmony
-                      </p>
-                      <p
-                        className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Beyond trends, creating impactful and unique
-                      </p>
-                      <p
-                        className={`py-[4px] scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        solutions
-                      </p>
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Building solutions through continuous user interaction
-                      </p>
-                    </div>
-                    <div className="scroll-dots">
-                      <div className="scroll-dot_other"></div>
-                      <div className="scroll-dot_other"></div>
-                      <div className="scroll-dot"></div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                      Interactive Design
+                    </p>
+                    <p
+                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Engineering for connection
+                    </p>
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Designing the overall user experience
+                    </p>
+                    <p
+                      className={`pt-[4px] scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      behavior with a product or service
+                    </p>
+                  </div>
+                  <div className="scroll-dots">
+                    <div className="scroll-dot"></div>
+                    <div className="scroll-dot_other"></div>
+                    <div className="scroll-dot_other"></div>
+                  </div>
+                </div>
+              )}
+              {currentScreen === 1 && (
+                <div className="scroll-section">
+                  <h1 className="scroll-section-title">Engineering</h1>
+                  <div className="scroll-section-description-container">
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Challenges to Solutions
+                    </p>
+                    <p
+                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Balancing User Needs & Business Goals
+                    </p>
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Choosing the right tools and technologies for
+                    </p>
+                    <p
+                      className={`pt-[4px] scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      every challenge
+                    </p>
+                  </div>
+                  <div className="scroll-dots">
+                    <div className="scroll-dot_other"></div>
+                    <div className="scroll-dot"></div>
+                    <div className="scroll-dot_other"></div>
+                  </div>
+                </div>
+              )}
+              {currentScreen === 2 && (
+                <div className="scroll-section">
+                  <h1 className="scroll-section-title">Harmony</h1>
+                  <div className="scroll-section-description-container">
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Design & Developement in Harmony
+                    </p>
+                    <p
+                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Beyond trends, creating impactful and unique
+                    </p>
+                    <p
+                      className={`py-[4px] scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      solutions
+                    </p>
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Building solutions through continuous user interaction
+                    </p>
+                  </div>
+                  <div className="scroll-dots">
+                    <div className="scroll-dot_other"></div>
+                    <div className="scroll-dot_other"></div>
+                    <div className="scroll-dot"></div>
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
-            <div ref={scrollContainerRef} style={{ scrollBehavior: 'smooth' }}>
-              <AnimatePresence mode="wait">
-                {currentScreen === 0 && (
-                  <motion.div
-                    className="scroll-section"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    style={{ zIndex: 10 }}
+            <div ref={scrollContainerRef}>
+              {currentScreen === 0 && (
+                <div className="scroll-section">
+                  <h1
+                    className={`scroll-section-title ${visibleElements.includes(0) ? 'opacity-100' : 'opacity-0'}`}
                   >
-                    <h1
-                      className={`scroll-section-title ${visibleElements.includes(0) ? 'opacity-100' : 'opacity-0'}`}
+                    Design
+                  </h1>
+                  <div className="scroll-section-description-container">
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
                     >
-                      Design
-                    </h1>
-                    <div className="scroll-section-description-container">
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Interactive Design
-                      </p>
-                      <p
-                        className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Engineering for connection
-                      </p>
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Designing the overall user experience and behavior with
-                        a product or service
-                      </p>
-                    </div>
-                    <div className="scroll-dots">
-                      <div className="scroll-dot"></div>
-                      <div className="scroll-dot_other"></div>
-                      <div className="scroll-dot_other"></div>
-                    </div>
-                  </motion.div>
-                )}
-                {currentScreen === 1 && (
-                  <motion.div
-                    className="scroll-section"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    style={{ zIndex: 5 }}
-                  >
-                    <h1 className="scroll-section-title">Engineering</h1>
-                    <div className="scroll-section-description-container">
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Challenges to Solutions
-                      </p>
-                      <p
-                        className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Balancing User Needs & Business Goals
-                      </p>
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Choosing the right tools and technologies for every
-                        challenge
-                      </p>
-                    </div>
-                    <div className="scroll-dots">
-                      <div className="scroll-dot_other"></div>
-                      <div className="scroll-dot"></div>
-                      <div className="scroll-dot_other"></div>
-                    </div>
-                  </motion.div>
-                )}
-                {currentScreen === 2 && (
-                  <motion.div
-                    className="scroll-section"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    style={{ zIndex: 5 }}
-                  >
-                    <h1 className="scroll-section-title">Harmony</h1>
-                    <div className="scroll-section-description-container">
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Design & Developement in Harmony
-                      </p>
-                      <p
-                        className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Beyond trends, creating impactful and unique solutions
-                      </p>
-                      <p
-                        className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-                      >
-                        Building solutions through continuous user interaction
-                      </p>
-                    </div>
-                    <div className="scroll-dots">
-                      <div className="scroll-dot_other"></div>
-                      <div className="scroll-dot_other"></div>
-                      <div className="scroll-dot"></div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                      Interactive Design
+                    </p>
+                    <p
+                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Engineering for connection
+                    </p>
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Designing the overall user experience and behavior with a
+                      product or service
+                    </p>
+                  </div>
+                  <div className="scroll-dots">
+                    <div className="scroll-dot"></div>
+                    <div className="scroll-dot_other"></div>
+                    <div className="scroll-dot_other"></div>
+                  </div>
+                </div>
+              )}
+              {currentScreen === 1 && (
+                <div className="scroll-section">
+                  <h1 className="scroll-section-title">Engineering</h1>
+                  <div className="scroll-section-description-container">
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Challenges to Solutions
+                    </p>
+                    <p
+                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Balancing User Needs & Business Goals
+                    </p>
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Choosing the right tools and technologies for every
+                      challenge
+                    </p>
+                  </div>
+                  <div className="scroll-dots">
+                    <div className="scroll-dot_other"></div>
+                    <div className="scroll-dot"></div>
+                    <div className="scroll-dot_other"></div>
+                  </div>
+                </div>
+              )}
+              {currentScreen === 2 && (
+                <div className="scroll-section">
+                  <h1 className="scroll-section-title">Harmony</h1>
+                  <div className="scroll-section-description-container">
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Design & Developement in Harmony
+                    </p>
+                    <p
+                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Beyond trends, creating impactful and unique solutions
+                    </p>
+                    <p
+                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                      Building solutions through continuous user interaction
+                    </p>
+                  </div>
+                  <div className="scroll-dots">
+                    <div className="scroll-dot_other"></div>
+                    <div className="scroll-dot_other"></div>
+                    <div className="scroll-dot"></div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

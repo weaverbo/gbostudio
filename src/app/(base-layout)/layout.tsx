@@ -14,8 +14,6 @@ export default function RootLayout({
 }>) {
   const [showPadding, setIsShowPadding] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width : 1024px)' });
-  console.log(isMobile);
-  console.log(showPadding);
 
   const footerRef = useRef<HTMLDivElement>(null);
 
@@ -25,8 +23,6 @@ export default function RootLayout({
 
   const pathname = usePathname();
 
-  console.log(typeof pathname);
-  console.log(pathname);
   useEffect(() => {
     if (pathname === '/portpolio' || '/portpolio/portpolio_detail') {
       setIsShowPadding(true);
@@ -43,7 +39,6 @@ export default function RootLayout({
       ) : (
         <div>{children}</div>
       )}
-
       <Footer ref={footerRef} />
     </>
   );
