@@ -1,29 +1,30 @@
 'use client';
 
-import Image from 'next/image';
-import StyledLink from 'next/link';
+import PortPolioSection from '@/components/PortPolioSection';
+import ServiceSection from '@/components/ServiceSection';
+import DesignSection from '@/components/TextAnimationSection/DesignSection';
+import EngineeringSection from '@/components/TextAnimationSection/EngineeringSection';
+import HarmonySection from '@/components/TextAnimationSection/HarmonySection';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-import chat_app from '../../../../public/img/chat_app.png';
-import team from '../../../../public/img/team.png';
 import '../../../styles/main.css';
 
 export default function Main() {
   const [visibleElements, setVisibleElements] = useState<number[]>([]);
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentScreen, setCurrentScreen] = useState<number>(0);
+  const [isMediaQuery, setIsMediaQuery] = useState<boolean | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollsectionRef = useRef<HTMLDivElement>(null);
-  const [isMediaQuery, setIsMediaQuery] = useState(false);
 
   const pathname = usePathname();
   const isMobile = useMediaQuery({ query: '(max-width : 768px)' });
 
   useEffect(() => {
     setIsMediaQuery(isMobile);
-  }, [isMobile]);
+  }, [isMediaQuery]);
 
   // 텍스트 인터랙션
   const startTextAnimation = () => {
@@ -40,13 +41,14 @@ export default function Main() {
 
     setTimeout(() => {
       setIsAnimating(false);
-    }, 2500);
+    }, 3000);
 
     return () => {
       timers.forEach(timer => clearTimeout(timer));
     };
   };
 
+  // 스크롤 애니메이션
   useEffect(() => {
     const handleScroll = () => {
       if (isAnimating) return;
@@ -56,13 +58,10 @@ export default function Main() {
       const engineeringToHarmony = window.innerHeight * 0.02;
 
       if (scrollPosition > designToEngineering && currentScreen === 0) {
-        console.log(currentScreen);
         setCurrentScreen(1);
       } else if (scrollPosition <= designToEngineering && currentScreen === 1) {
-        console.log(currentScreen);
         setCurrentScreen(0);
       } else if (scrollPosition > engineeringToHarmony && currentScreen === 1) {
-        console.log(currentScreen);
         setCurrentScreen(2);
       } else if (
         scrollPosition <= engineeringToHarmony &&
@@ -114,330 +113,29 @@ export default function Main() {
     <div className="overflow-x-hidden">
       <div className="container">
         <div ref={scrollsectionRef} className="h-[900px] mt-[82px] relative">
-          {isMediaQuery ? (
-            <div ref={scrollContainerRef}>
-              {currentScreen === 0 && (
-                <div className="scroll-section">
-                  <h1
-                    className={`scroll-section-title ${visibleElements.includes(0) ? 'opacity-100' : 'opacity-0'}`}
-                  >
-                    Design
-                  </h1>
-                  <div className="scroll-section-description-container">
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Interactive Design
-                    </p>
-                    <p
-                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Engineering for connection
-                    </p>
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Designing the overall user experience
-                    </p>
-                    <p
-                      className={`pt-[4px] scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      behavior with a product or service
-                    </p>
-                  </div>
-                  <div className="scroll-dots">
-                    <div className="scroll-dot"></div>
-                    <div className="scroll-dot_other"></div>
-                    <div className="scroll-dot_other"></div>
-                  </div>
-                </div>
-              )}
-              {currentScreen === 1 && (
-                <div className="scroll-section">
-                  <h1 className="scroll-section-title">Engineering</h1>
-                  <div className="scroll-section-description-container">
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Challenges to Solutions
-                    </p>
-                    <p
-                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Balancing User Needs & Business Goals
-                    </p>
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Choosing the right tools and technologies for
-                    </p>
-                    <p
-                      className={`pt-[4px] scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      every challenge
-                    </p>
-                  </div>
-                  <div className="scroll-dots">
-                    <div className="scroll-dot_other"></div>
-                    <div className="scroll-dot"></div>
-                    <div className="scroll-dot_other"></div>
-                  </div>
-                </div>
-              )}
-              {currentScreen === 2 && (
-                <div className="scroll-section">
-                  <h1 className="scroll-section-title">Harmony</h1>
-                  <div className="scroll-section-description-container">
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Design & Developement in Harmony
-                    </p>
-                    <p
-                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Beyond trends, creating impactful and unique
-                    </p>
-                    <p
-                      className={`py-[4px] scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      solutions
-                    </p>
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Building solutions through continuous user interaction
-                    </p>
-                  </div>
-                  <div className="scroll-dots">
-                    <div className="scroll-dot_other"></div>
-                    <div className="scroll-dot_other"></div>
-                    <div className="scroll-dot"></div>
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div ref={scrollContainerRef}>
-              {currentScreen === 0 && (
-                <div className="scroll-section">
-                  <h1
-                    className={`scroll-section-title ${visibleElements.includes(0) ? 'opacity-100' : 'opacity-0'}`}
-                  >
-                    Design
-                  </h1>
-                  <div className="scroll-section-description-container">
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Interactive Design
-                    </p>
-                    <p
-                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Engineering for connection
-                    </p>
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Designing the overall user experience and behavior with a
-                      product or service
-                    </p>
-                  </div>
-                  <div className="scroll-dots">
-                    <div className="scroll-dot"></div>
-                    <div className="scroll-dot_other"></div>
-                    <div className="scroll-dot_other"></div>
-                  </div>
-                </div>
-              )}
-              {currentScreen === 1 && (
-                <div className="scroll-section">
-                  <h1 className="scroll-section-title">Engineering</h1>
-                  <div className="scroll-section-description-container">
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Challenges to Solutions
-                    </p>
-                    <p
-                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Balancing User Needs & Business Goals
-                    </p>
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Choosing the right tools and technologies for every
-                      challenge
-                    </p>
-                  </div>
-                  <div className="scroll-dots">
-                    <div className="scroll-dot_other"></div>
-                    <div className="scroll-dot"></div>
-                    <div className="scroll-dot_other"></div>
-                  </div>
-                </div>
-              )}
-              {currentScreen === 2 && (
-                <div className="scroll-section">
-                  <h1 className="scroll-section-title">Harmony</h1>
-                  <div className="scroll-section-description-container">
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Design & Developement in Harmony
-                    </p>
-                    <p
-                      className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Beyond trends, creating impactful and unique solutions
-                    </p>
-                    <p
-                      className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-                    >
-                      Building solutions through continuous user interaction
-                    </p>
-                  </div>
-                  <div className="scroll-dots">
-                    <div className="scroll-dot_other"></div>
-                    <div className="scroll-dot_other"></div>
-                    <div className="scroll-dot"></div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-        {/* SERVICES */}
-        <div>
-          <div className="marker-container">
-            <h1 className="section-title">SERVICES</h1>
-            <div className="marker"></div>
-          </div>
-          <div className="service-container">
-            <div className="overflow-x-scroll scrollbar-hide w-screen">
-              <ul className="service-card-container">
-                <li className="service-card">
-                  <div className="service-card-number">1</div>
-                  <div>
-                    <p className="service-card-title">
-                      맞춤형 웹사이트 디자인 제작
-                    </p>
-                    <div className="service-card-description">
-                      <p>제공하는 콘텐츠에 맞게</p>
-                      <p className="leading-[28px]">
-                        사용자를 고려한 직관적이고 깔끔한
-                      </p>
-                      <p>메인, 서브, 상세, 랜딩 페이지 제작 가능</p>
-                    </div>
-                  </div>
-                </li>
-                <li className="service-card">
-                  <div className="service-card-number">2</div>
-                  <div>
-                    <p className="service-card-title">
-                      콘텐츠 디자인 작업물 제작
-                    </p>
-                    <div className="service-card-description">
-                      <p>브랜드 아이덴티티 반영 로고와 파비콘,</p>
-                      <p className="leading-[28px]">
-                        와이어프레임, 배너, 카드뉴스 등 콘텐츠
-                      </p>
-                      <p>디자인 작업물 제작 가능</p>
-                    </div>
-                  </div>
-                </li>
-                <li className="service-card">
-                  <div className="service-card-number">3</div>
-                  <div>
-                    <p className="service-card-title">반응형 웹페이지</p>
-                    <div className="service-card-description">
-                      <p>PC, MOBILE 어디서든 유연하게</p>
-                      <p className="leading-[28px]">
-                        대응이 가능한 반응형 UI로 제작하여
-                      </p>
-                      <p>사용자 경험과 만족도 향상</p>
-                    </div>
-                  </div>
-                </li>
-                <li className="service-card">
-                  <div className="service-card-number">4</div>
-                  <div>
-                    <p className="service-card-title">인터랙티브한 웹디자인</p>
-                    <div className="service-card-description">
-                      <p>다양한 애니메이션 효과를 활용하여</p>
-                      <p className="leading-[28px]">
-                        직관적인 사용자 인터페이스를 구성하고,
-                      </p>
-                      <p>사용자 참여도를 극대화함</p>
-                    </div>
-                  </div>
-                </li>
-                <li className="service-card">
-                  <div className="service-card-number">5</div>
-                  <div>
-                    <p className="service-card-title">
-                      React.js 기반 UI 기능 개발
-                    </p>
-                    <div className="service-card-description">
-                      <p>재사용 가능한 컴포넌트 기반 설계로</p>
-                      <p className="leading-[28px]">
-                        쉽고 간편한 유지보수 가능하며,
-                      </p>
-                      <p>유연한 구조로 기능 추가와 확장 용이</p>
-                    </div>
-                  </div>
-                </li>
-                <li className="service-card">
-                  <div className="service-card-number">6</div>
-                  <div>
-                    <p className="service-card-title">
-                      Next.js 기반 풀스택 개발 가능
-                    </p>
-                    <div className="service-card-description">
-                      <p>미리 구현된 웹페이지 제공 기술로</p>
-                      <p className="leading-[28px]">
-                        빠른 로딩 속도와 SEO 최적화 구현,
-                      </p>
-                      <p>프론트엔드와 백엔드 통합 풀스택 개밡</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* PORTFOLIO */}
-        <div>
-          <div className="marker-container">
-            <h1 className="section-title">PORTFOLIO</h1>
-            <div className="marker"></div>
-          </div>
-          <h2 className="portfolio-section-subtitle">LATEST WORK</h2>
-          <h3 className="portfolio-section-text">Team website</h3>
-          <div className="mt-[16px]">
-            <StyledLink href="/portpolio/portpolio_detail">
-              <Image
-                className="shadow-[0_0_30px_rgba(0,0,0,0.2)]"
-                src={team}
-                alt="team"
+          <div ref={scrollContainerRef}>
+            {currentScreen === 0 && (
+              <DesignSection
+                visibleElements={visibleElements}
+                isMobile={isMobile}
               />
-            </StyledLink>
-          </div>
-          <div className="mt-[72px]">
-            <h2 className="portfolio-section-subtitle">LATEST WORK</h2>
-            <h3 className="portfolio-section-text">Chat App website</h3>
-            <div className="portfolio-section-image-container">
-              <Image
-                className="shadow-[0_0_30px_rgba(0,0,0,0.2)]"
-                src={chat_app}
-                alt="chat_app"
+            )}
+            {currentScreen === 1 && (
+              <EngineeringSection
+                visibleElements={visibleElements}
+                isMobile={isMobile}
               />
-            </div>
+            )}
+            {currentScreen === 2 && (
+              <HarmonySection
+                visibleElements={visibleElements}
+                isMobile={isMobile}
+              />
+            )}
           </div>
         </div>
+        <ServiceSection />
+        <PortPolioSection />
       </div>
     </div>
   );
