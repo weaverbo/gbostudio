@@ -1,10 +1,10 @@
-import { Inria_Sans } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import StyleLink from 'next/link';
 
 import '../styles/globals.css';
 
-const InriaSans = Inria_Sans({
+const FontInter = Inter({
   subsets: ['latin'],
   variable: '--font-Inria_Sans',
   weight: ['300', '400', '700'],
@@ -17,14 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <html lang="en" className={InriaSans.variable}>
+      <html lang="en" className={FontInter.variable}>
         <Head>
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
         </Head>
-        <body className="font-InriaSans relative">
+        <body className="relative">
           <link rel="icon" href="./favicon.png" />
           <title>GBO STUDIO</title>
           {children}

@@ -24,7 +24,7 @@ export default function Main() {
 
   useEffect(() => {
     setIsMediaQuery(isMobile);
-  }, [isMediaQuery]);
+  }, [isMobile]);
 
   // 텍스트 인터랙션
   const startTextAnimation = () => {
@@ -41,7 +41,7 @@ export default function Main() {
 
     setTimeout(() => {
       setIsAnimating(false);
-    }, 3000);
+    }, 2500);
 
     return () => {
       timers.forEach(timer => clearTimeout(timer));

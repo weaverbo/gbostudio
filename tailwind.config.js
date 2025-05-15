@@ -8,9 +8,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        InriaSans: ['var(--font-Inria_Sans)'],
-      },
       fontSize: {
         xs: '14px',
         sm: '16px',
@@ -31,8 +28,6 @@ module.exports = {
         bold: '700',
       },
       colors: {
-        main: '#2640A1',
-        submain: '#FFCD00',
         background: '#EBEBEB',
       },
     },
