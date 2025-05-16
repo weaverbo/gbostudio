@@ -3,6 +3,7 @@ import { forwardRef } from 'react';
 
 import '../styles/footer.css';
 import { LineAnimation } from './ui/LineAnimation';
+import UnderLineText from './ui/UnderlineText';
 
 const Footer = forwardRef<HTMLDivElement>((_, footerRef) => {
   const { ref, animationKey } = useAnimateOnInView();
@@ -16,7 +17,9 @@ const Footer = forwardRef<HTMLDivElement>((_, footerRef) => {
             <p className="contact-left-title">LET&apos;S TALK</p>
           </div>
           <div className="flex justify-between mt-[72px]">
-            <p className="text-3xl">gbostudio@naver.com</p>
+            <p className="text-3xl">
+              <UnderLineText>gbostudio@naver.com</UnderLineText>
+            </p>
             <div className="flex">
               <div className="flex flex-col justify-between">
                 <p>GBO STUDIO</p>
