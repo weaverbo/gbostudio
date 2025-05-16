@@ -1,3 +1,18 @@
+# 이전 코드 백업
+
+# 작성일
+
+2025-05-15
+
+# 백업 이유
+
+스크롤 애니메이션, 텍스트 인터렉션 구현시 참고해야할 부분
+
+# 주요 코드
+
+/app/(base-layout)/(main)/page.tsx
+
+```tsx
 'use client';
 
 import PortPolioSection from '@/components/PortPolioSection';
@@ -95,13 +110,13 @@ export default function Main() {
   }, [currentScreen]);
 
   // 스크롤 제어
-  // useEffect(() => {
-  //   if (isAnimating) {
-  //     document.body.style.overflow = 'hidden';
-  //   } else {
-  //     document.body.style.overflow = '';
-  //   }
-  // }, [isAnimating]);
+  useEffect(() => {
+    if (isAnimating) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isAnimating]);
 
   useEffect(() => {
     if (pathname === '/') {
@@ -140,3 +155,4 @@ export default function Main() {
     </div>
   );
 }
+```

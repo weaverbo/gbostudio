@@ -1,98 +1,98 @@
+import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+
+import HighlightText from '../components/HighlightText';
+
 export default function ServiceSection() {
+  const [animationKey, setAnimationKey] = useState(0);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimationKey(prev => prev + 1);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-      <div>
-        <div className="marker-container">
-          <h1 className="section-title">SERVICES</h1>
-          <div className="marker"></div>
-        </div>
+      <div ref={ref} className="relative">
+        <h1 className="text-3xl">SERVICES</h1>
+        <motion.div
+          key={animationKey}
+          initial={{ width: 0 }}
+          animate={{ width: '100%' }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          className="h-[1px] bg-black absolute top-5 mr-[-383px]"
+          style={{ right: 'calc(100px)' }}
+        />
         <div className="service-container">
-          <div className="overflow-x-scroll scrollbar-hide w-screen">
+          <div className="overflow-x-scroll scrollbar-hide w-screen  ml-[40px]">
             <ul className="service-card-container">
               <li className="service-card">
-                <div className="service-card-number">1</div>
-                <div>
-                  <p className="service-card-title">
-                    맞춤형 웹사이트 디자인 제작
-                  </p>
-                  <div className="service-card-description">
-                    <p>제공하는 콘텐츠에 맞게</p>
-                    <p className="leading-[28px]">
-                      사용자를 고려한 직관적이고 깔끔한
-                    </p>
-                    <p>메인, 서브, 상세, 랜딩 페이지 제작 가능</p>
-                  </div>
+                <p className="service-card-title">
+                  <HighlightText>맞춤형 웹사이트 디자인 제작</HighlightText>
+                </p>
+                <div className="service-card-description">
+                  <HighlightText>
+                    <span>기획, 디자인, 개발까지</span>
+                    <span className="service-card-paragraph">
+                      전문가들과 함께 만들어가는
+                    </span>
+                    <p>올인원 웹사이트 제작 서비스</p>
+                  </HighlightText>
                 </div>
               </li>
               <li className="service-card">
-                <div className="service-card-number">2</div>
-                <div>
-                  <p className="service-card-title">
-                    콘텐츠 디자인 작업물 제작
-                  </p>
-                  <div className="service-card-description">
-                    <p>브랜드 아이덴티티 반영 로고와 파비콘,</p>
-                    <p className="leading-[28px]">
-                      와이어프레임, 배너, 카드뉴스 등 콘텐츠
-                    </p>
-                    <p>디자인 작업물 제작 가능</p>
-                  </div>
+                <p className="service-card-title">
+                  <HighlightText>인터랙티브 웹디자인</HighlightText>
+                </p>
+                <div className="service-card-description">
+                  <HighlightText>
+                    <span>UX 설계로 사용성 향상과</span>
+                    <span className="service-card-paragraph">
+                      다양한 인터랙티브 요소로
+                    </span>
+                    <p>직관적이고 최적화된 UI 구현</p>
+                  </HighlightText>
                 </div>
               </li>
               <li className="service-card">
-                <div className="service-card-number">3</div>
-                <div>
-                  <p className="service-card-title">반응형 웹페이지</p>
-                  <div className="service-card-description">
-                    <p>PC, MOBILE 어디서든 유연하게</p>
-                    <p className="leading-[28px]">
-                      대응이 가능한 반응형 UI로 제작하여
-                    </p>
-                    <p>사용자 경험과 만족도 향상</p>
-                  </div>
+                <p className="service-card-title">
+                  <HighlightText>풀스택 개발</HighlightText>
+                </p>
+                <div className="service-card-description">
+                  <HighlightText>
+                    <span>유연한 구조로 손쉽게 관리,</span>
+                    <span className="service-card-paragraph">
+                      기능 추가와 확장이 자유로운
+                    </span>
+                    <p>웹사이트 구축 서비스</p>
+                  </HighlightText>
                 </div>
               </li>
               <li className="service-card">
-                <div className="service-card-number">4</div>
-                <div>
-                  <p className="service-card-title">인터랙티브한 웹디자인</p>
-                  <div className="service-card-description">
-                    <p>다양한 애니메이션 효과를 활용하여</p>
-                    <p className="leading-[28px]">
-                      직관적인 사용자 인터페이스를 구성하고,
-                    </p>
-                    <p>사용자 참여도를 극대화함</p>
-                  </div>
-                </div>
-              </li>
-              <li className="service-card">
-                <div className="service-card-number">5</div>
-                <div>
-                  <p className="service-card-title">
-                    React.js 기반 UI 기능 개발
-                  </p>
-                  <div className="service-card-description">
-                    <p>재사용 가능한 컴포넌트 기반 설계로</p>
-                    <p className="leading-[28px]">
-                      쉽고 간편한 유지보수 가능하며,
-                    </p>
-                    <p>유연한 구조로 기능 추가와 확장 용이</p>
-                  </div>
-                </div>
-              </li>
-              <li className="service-card">
-                <div className="service-card-number">6</div>
-                <div>
-                  <p className="service-card-title">
-                    Next.js 기반 풀스택 개발 가능
-                  </p>
-                  <div className="service-card-description">
-                    <p>미리 구현된 웹페이지 제공 기술로</p>
-                    <p className="leading-[28px]">
-                      빠른 로딩 속도와 SEO 최적화 구현,
-                    </p>
-                    <p>프론트엔드와 백엔드 통합 풀스택 개밡</p>
-                  </div>
+                <p className="service-card-title">
+                  <HighlightText>SEO 최적화</HighlightText>
+                </p>
+                <div className="service-card-description">
+                  <HighlightText>
+                    <span>검색 엔진에 더 잘 노출되고</span>
+                    <span className="service-card-paragraph">
+                      성과를 극대화할 수 있는
+                    </span>
+                    <p>효율적인 웹사이트 제작</p>
+                  </HighlightText>
                 </div>
               </li>
             </ul>

@@ -1,9 +1,9 @@
 .scroll-section {
-  @apply mt-[140px] mb-[406px] flex flex-col absolute w-full;
+  @apply mt-[118px] mb-[406px] flex flex-col absolute w-full;
 }
 
 .scroll-section-title {
-  @apply h-[204px] text-[170px] text-main font-bold ml-[-13px] transition-opacity duration-500;
+  @apply h-[204px] text-[180px] ml-[-13px] transition-opacity duration-500;
 }
 
 .scroll-section-description-container {
@@ -11,11 +11,11 @@
 }
 
 .scroll-section-description {
-  @apply text-xl text-main transition-opacity duration-500;
+  @apply text-xl transition-opacity duration-500;
 }
 
 .scroll-section-description-other {
-  @apply text-xl text-main my-[12px] transition-opacity duration-500;
+  @apply text-xl my-[12px] transition-opacity duration-500;
 }
 
 .scroll-dots {
@@ -23,19 +23,15 @@
 }
 
 .scroll-dot {
-  @apply w-[10px] h-[10px] bg-[#FFCD00] rounded-full;
+  @apply w-[10px] h-[10px] bg-[#000] rounded-full;
 }
 
 .scroll-dot_other {
-  @apply w-[10px] h-[10px] bg-main rounded-full;
-}
-
-.section-title {
-  @apply text-main font-bold text-6xl;
+  @apply w-[10px] h-[10px] bg-[#FFFF] rounded-full;
 }
 
 .marker-container {
-  @apply flex text-xl text-main mt-[36px];
+  @apply flex text-xl mt-[36px];
 }
 
 .marker {
@@ -43,43 +39,35 @@
 }
 
 .service-container {
-  @apply relative mt-[102px] mb-[280px];
+  @apply relative mb-[280px] ml-[238px];
 }
 
 .service-card-container {
-  @apply flex gap-[24px] w-max pr-[165px];
+  @apply flex gap-[24px] w-max pr-[515px];
 }
 
 .service-card {
-  @apply w-[345px] h-[224px] border-[1px] border-main px-[36px] py-[36px] rounded-br-[50px] rounded-tl-[50px] flex-shrink-0 hover:bg-main hover:bg-opacity-10;
-}
-
-.service-card-number {
-  @apply bg-[#FFCD00] w-[24px] h-[24px] rounded-full flex items-center justify-center text-sm text-main font-bold mb-[12px];
+  @apply w-[285px] border-[1px] py-[39px] rounded-br-[50px] rounded-tl-[50px] flex-shrink-0  hover:bg-opacity-10;
 }
 
 .service-card-title {
-  @apply text-md text-main font-bold mt-[8px] mb-[22px];
+  @apply text-xl font-bold mt-[8px] mb-[22px];
 }
 
 .service-card-description {
-  @apply text-base text-main font-thin flex flex-col;
+  @apply text-xl font-thin flex flex-col leading-[33.6px];
 }
 
-.portfolio-section-subtitle {
-  @apply text-xl text-main opacity-60 mt-[45px] mb-[25px];
-}
-
-.portfolio-section-text {
-  @apply text-main text-4xl mb-[10px];
+.service-card-paragraph {
+  @apply block leading-[33.6px];
 }
 
 .portfolio-section-image-container {
-  @apply mt-[16px] mb-[140px];
+  @apply mb-[140px];
 }
 
 .portfolio-section-image {
-  @apply w-[345px] h-[224px] border-[1px] border-main px-[36px] py-[36px] rounded-br-[50px] rounded-tl-[50px] flex-shrink-0 hover:bg-main hover:bg-opacity-10;
+  @apply w-[345px] h-[224px] border-[1px] px-[36px] py-[36px] rounded-br-[50px] rounded-tl-[50px] flex-shrink-0 hover:bg-opacity-10;
 }
 
 @media (max-width: 1280px) {
@@ -101,10 +89,6 @@
 
   .scroll-dots {
     @apply top-[150px];
-  }
-
-  .section-title {
-    @apply text-[110px];
   }
 
   .marker {
@@ -135,10 +119,6 @@
 
   .scroll-dots {
     @apply top-[160px];
-  }
-
-  .section-title {
-    @apply text-[70px];
   }
 
   .marker {
@@ -185,10 +165,6 @@
 }
 
 @media (max-width: 580px) {
-  .section-title {
-    @apply text-[40px];
-  }
-
   .marker {
     @apply mt-[23px];
   }

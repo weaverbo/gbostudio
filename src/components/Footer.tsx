@@ -1,64 +1,67 @@
-import Image from 'next/image';
-import { forwardRef } from 'react';
+import { motion } from 'framer-motion';
+import { forwardRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 
-import arrow_left from '../../public/img/arrow_left.png';
 import '../styles/footer.css';
 
 const Footer = forwardRef<HTMLDivElement>((_, footerRef) => {
+  const [animationKey, setAnimationKey] = useState(0);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimationKey(prev => prev + 1);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+  }, []);
   return (
     <>
-      <div className="bg-main" ref={footerRef}>
-        <div className="container contact-container">
+      <div ref={footerRef}>
+        <div className="container relative" ref={ref}>
+          <motion.div
+            key={animationKey}
+            initial={{ width: 0 }}
+            animate={{ width: '100%' }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            className="h-[1px] bg-black absolute top-5 mr-[-383px]"
+            style={{ right: 'calc(100px)' }}
+          />
           <div className="contact-left-container">
-            <div className="flex gap-[8px] items-center text-white">
-              <div className="contact-left-title">LET&apos;S TALK</div>
-              <div className="contact-left-text">
-                <p className="leading-[21px]">맞춤형 솔루션으로</p>
-                <p>웹페이지 제작 고민을 덜어드립니다.</p>
-              </div>
-            </div>
-            <form className="block mt-[24px]">
-              <div className="email-input-container">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="email-input"
-                />
-                <button>
-                  <Image
-                    src={arrow_left}
-                    alt="arrow_left"
-                    className="email-submit-button"
-                  />
-                </button>
-              </div>
-            </form>
-            <p className="contact-left-description">
-              * 메일주소 남겨주시면 빠른 시일 내에 회신드리겠습니다!
-            </p>
+            <p className="contact-left-title">LET&apos;S TALK</p>
           </div>
-          <div className="contact-right-container">
-            <div className="text-lg text-center text-white opacity-80">
-              GBO Studio
-            </div>
-            <div className="font-sm font-thin text-white opacity-80">
-              <p className="contact-right-subtitle">OFFICE HOURS</p>
-              <p className="flex justify-between mt-[10px]">
-                <span>MON</span>
-                <span>FRI</span>
-              </p>
-              <p className="text-center">TO</p>
-              <p className="flex justify-between">
-                <span>NINE</span>
-                <span>SIX</span>
-              </p>
+          <div className="flex justify-between mt-[72px]">
+            <p className="text-3xl">gbostudio@naver.com</p>
+            <div className="flex">
+              <div className="flex flex-col justify-between">
+                <p>GBO STUDIO</p>
+                <p>OFFICE HOURS</p>
+              </div>
+              <div className="w-[1px] h-[51px] bg-black mx-[16px]"></div>
+              <div className="w-[121px]">
+                <div className="flex justify-between">
+                  <p>MON</p>
+                  <p>FRI</p>
+                </div>
+                <div className="text-center">TO</div>
+                <div className="flex justify-between">
+                  <p>NINE</p>
+                  <p>SIX</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div className="container footer-bottom-container">
-        <p className="footer-botton-text">Copyright © 2025 GBO Studio</p>
-        <div className="footer-bottom-marker"></div>
+        <div className="footer-botton-text">Copyright © 2025 GBO Studio</div>
         <div className="footer-bottom-menu">
           <span className="text-black">HOME</span>
           <span className="text-black">SERVICE</span>

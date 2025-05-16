@@ -3,10 +3,7 @@ interface ScrollsectionProps {
   isMobile: boolean;
 }
 
-export default function DesignSection({
-  visibleElements,
-  isMobile,
-}: ScrollsectionProps) {
+export default function DesignSection({ visibleElements }: ScrollsectionProps) {
   return (
     <>
       <div className="scroll-section">
@@ -19,34 +16,18 @@ export default function DesignSection({
           <p
             className={`scroll-section-description ${visibleElements.includes(1) ? 'opacity-100' : 'opacity-0'}`}
           >
-            Interactive Design
+            intentional interaction
           </p>
           <p
             className={`scroll-section-description-other ${visibleElements.includes(2) ? 'opacity-100' : 'opacity-0'}`}
           >
-            Engineering for connection
+            every element serves a purpose — no more, no less
           </p>
-          {isMobile ? (
-            <p
-              className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-            >
-              Designing the overall user experience
-            </p>
-          ) : (
-            <p
-              className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
-            >
-              Designing the overall user experience behavior with a product or
-              service
-            </p>
-          )}
-          {isMobile && (
-            <p
-              className={`pt-[4px] scroll-section-description ${visibleElements.includes(4) ? 'opacity-100' : 'opacity-0'}`}
-            >
-              behavior with a product or service
-            </p>
-          )}
+          <p
+            className={`scroll-section-description ${visibleElements.includes(3) ? 'opacity-100' : 'opacity-0'}`}
+          >
+            minimal yet meaningful
+          </p>
         </div>
         <div className="scroll-dots">
           <div className="scroll-dot"></div>

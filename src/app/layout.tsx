@@ -24,16 +24,15 @@ export default function RootLayout({
             content="width=device-width, initial-scale=1.0"
           />
         </Head>
-        <body className="relative">
+        <body className="relative overflow-x-hidden">
           <link rel="icon" href="./favicon.png" />
           <title>GBO STUDIO</title>
           {children}
           <StyleLink
             href="/"
-            className="w-[50px] h-[50px] rounded-full bg-submain text-main font-bold text-xs flex items-center justify-center flex-col fixed bottom-[50px] right-[50px] z-50"
+            className="w-[100px] h-[100px] rounded-full bg-[#000] text-xs flex items-center justify-center flex-col fixed bottom-[100px] right-[50px] z-50"
           >
-            <span>1:1</span>
-            <span>talk</span>
+            <span className="text-white">Talk</span>
           </StyleLink>
         </body>
       </html>

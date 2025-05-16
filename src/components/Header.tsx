@@ -29,11 +29,11 @@ export default function Header({
               >
                 <Image src={close_icon} alt="close" />
               </button>
-              <ul className="flex flex-col mt-[68px] ml-[48px] text-main font-bold text-xl">
+              <ul className="flex flex-col mt-[68px] ml-[48px] text-xl">
                 <li className="pt-[39px]">
                   <StyledLink
                     href="/"
-                    className="text-2xl mb-6"
+                    className="text-xl mb-6"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     HOME
@@ -42,7 +42,7 @@ export default function Header({
                 <li className="py-[39px]">
                   <StyledLink
                     href="/portpolio"
-                    className="text-2xl"
+                    className="text-xl"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     PORTFOLIO
@@ -50,7 +50,7 @@ export default function Header({
                 </li>
                 <li>
                   <button
-                    className="text-2xl"
+                    className="text-xl"
                     onClick={() => {
                       setIsMenuOpen(false);
                       onContactClick?.();
@@ -63,8 +63,8 @@ export default function Header({
             </div>
           ) : (
             <div className="fixed w-full bg-background h-[82px] z-50">
-              <div className="container flex justify-between items-center text-main pt-[23px]">
-                <StyledLink href={'/'} className="text-2xl font-bold">
+              <div className="container flex justify-between items-center pt-[23px]">
+                <StyledLink href={'/'} className="text-2xl">
                   GBO STUDIO
                 </StyledLink>
                 <button
@@ -80,9 +80,9 @@ export default function Header({
       ) : (
         <>
           <div className="fixed w-full bg-background h-[82px] z-50">
-            <div className="container flex justify-between items-center text-main pt-[23px] py-[23px] ">
-              <StyledLink href={'/'} className="text-2xl font-bold">
-                GBO STUDIO
+            <div className="container flex justify-between items-center pt-[23px] py-[23px] ">
+              <StyledLink href={'/'} className="text-2xl">
+                GBO Studio
               </StyledLink>
               <div className="text-xl">
                 <StyledLink href={'/portpolio'}>PORTFOLIO</StyledLink>
