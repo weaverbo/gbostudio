@@ -1,39 +1,17 @@
-import { motion } from 'framer-motion';
-import { forwardRef, useEffect, useState } from 'react';
-import { useRef } from 'react';
+import { useAnimateOnInView } from '@/hook/useAnimateOnInView';
+import { forwardRef } from 'react';
 
 import '../styles/footer.css';
+import { LineAnimation } from './ui/LineAnimation';
 
 const Footer = forwardRef<HTMLDivElement>((_, footerRef) => {
-  const [animationKey, setAnimationKey] = useState(0);
-  const ref = useRef(null);
+  const { ref, animationKey } = useAnimateOnInView();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimationKey(prev => prev + 1);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-  }, []);
   return (
     <>
       <div ref={footerRef}>
         <div className="container relative" ref={ref}>
-          <motion.div
-            key={animationKey}
-            initial={{ width: 0 }}
-            animate={{ width: '100%' }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            className="h-[1px] bg-black absolute top-5 mr-[-383px]"
-            style={{ right: 'calc(100px)' }}
-          />
+          <LineAnimation animationKey={animationKey} />
           <div className="contact-left-container">
             <p className="contact-left-title">LET&apos;S TALK</p>
           </div>

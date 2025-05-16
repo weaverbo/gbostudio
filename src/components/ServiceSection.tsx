@@ -1,41 +1,16 @@
-import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useAnimateOnInView } from '@/hook/useAnimateOnInView';
 
-import HighlightText from '../components/HighlightText';
+import HighlightText from '../components/ui/HighlightText';
+import { LineAnimation } from './ui/LineAnimation';
 
 export default function ServiceSection() {
-  const [animationKey, setAnimationKey] = useState(0);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimationKey(prev => prev + 1);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const { ref, animationKey } = useAnimateOnInView();
 
   return (
     <>
       <div ref={ref} className="relative">
         <h1 className="text-3xl">SERVICES</h1>
-        <motion.div
-          key={animationKey}
-          initial={{ width: 0 }}
-          animate={{ width: '100%' }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className="h-[1px] bg-black absolute top-5 mr-[-383px]"
-          style={{ right: 'calc(100px)' }}
-        />
+        <LineAnimation animationKey={animationKey} />
         <div className="service-container">
           <div className="overflow-x-scroll scrollbar-hide w-screen  ml-[40px]">
             <ul className="service-card-container">
