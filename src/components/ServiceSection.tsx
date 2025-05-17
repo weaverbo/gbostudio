@@ -12,7 +12,7 @@ export default function ServiceSection() {
         <h1 className="text-3xl">SERVICES</h1>
         <LineAnimation animationKey={animationKey} />
         <div className="service-container">
-          <div className="overflow-x-scroll scrollbar-hide w-screen  ml-[40px]">
+          <div className="overflow-x-scroll scrollbar-hide w-screen ml-[40px]">
             <ul className="service-card-container">
               <li className="service-card">
                 <p className="service-card-title">
