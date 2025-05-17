@@ -1,6 +1,7 @@
 import { useAnimateOnInView } from '@/hook/useAnimateOnInView';
 
 import HighlightText from '../components/ui/HighlightText';
+import '../styles/servicesection.css';
 import { LineAnimation } from './ui/LineAnimation';
 
 export default function ServiceSection() {

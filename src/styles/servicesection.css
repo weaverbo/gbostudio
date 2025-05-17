@@ -1,0 +1,45 @@
+.service-container {
+  @apply relative mb-[280px] ml-[238px];
+}
+
+.service-card-container {
+  @apply flex gap-[24px] w-max pr-[440px];
+}
+
+.service-card {
+  @apply w-[285px] border-[1px] py-[39px] rounded-br-[50px] rounded-tl-[50px] flex-shrink-0  hover:bg-opacity-10;
+}
+
+.service-card-title {
+  @apply text-xl font-bold mt-[8px] mb-[22px];
+}
+
+.service-card-description {
+  @apply text-xl font-thin flex flex-col leading-[33.6px];
+}
+
+.service-card-paragraph {
+  @apply block leading-[33.6px];
+}
+
+@media (max-width: 580px) {
+  .service-container {
+    @apply relative mt-[48px] mb-[128px];
+  }
+
+  .service-card-title {
+    @apply text-sm;
+  }
+
+  .service-card-description {
+    @apply text-xs;
+  }
+
+  .service-card-container {
+    @apply pr-[48px];
+  }
+
+  .service-card {
+    @apply w-[285px] h-[196px];
+  }
+}

@@ -10,8 +10,10 @@ import menu_icon from '../../public/img/menu_icon.png';
 
 export default function Header({
   onContactClick,
+  onPortFolioClick,
 }: {
   onContactClick?: () => void;
+  onPortFolioClick?: () => void;
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -40,13 +42,15 @@ export default function Header({
                   </StyledLink>
                 </li>
                 <li className="py-[39px]">
-                  <StyledLink
-                    href="/portpolio"
+                  <button
                     className="text-xl"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      onPortFolioClick?.();
+                    }}
                   >
                     PORTFOLIO
-                  </StyledLink>
+                  </button>
                 </li>
                 <li>
                   <button
@@ -85,7 +89,13 @@ export default function Header({
                 GBO Studio
               </StyledLink>
               <div className="text-xl">
-                <StyledLink href={'/portpolio'}>PORTFOLIO</StyledLink>
+                <button
+                  onClick={() => {
+                    onPortFolioClick?.();
+                  }}
+                >
+                  PORTFOLIO
+                </button>
                 <button onClick={onContactClick} className="ml-[24px]">
                   CONTACT
                 </button>

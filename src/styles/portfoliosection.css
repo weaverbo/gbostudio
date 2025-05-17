@@ -1,0 +1,19 @@
+.portfolio-section-container {
+  @apply mt-[96px] mb-[280px] overflow-x-scroll w-screen;
+}
+
+.portfolio-container {
+  @apply flex gap-[64px] w-max;
+}
+
+.portfolio-tag {
+  @apply flex gap-[16px] pb-[16px] justify-end text-xl transition-all duration-500;
+}
+
+.portfolio-image {
+  @apply w-[740px] h-[1098px] grayscale hover:grayscale-0;
+}
+
+.portfolio-bottom-tag {
+  @apply pt-[16px] text-xl transition-all duration-500;
+}

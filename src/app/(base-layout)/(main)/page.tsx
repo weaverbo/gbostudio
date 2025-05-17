@@ -1,17 +1,21 @@
 'use client';
 
-import PortPolioSection from '@/components/PortPolioSection';
+import PortFolioSection from '@/components/PortFolioSection';
 import ServiceSection from '@/components/ServiceSection';
 import DesignSection from '@/components/TextAnimationSection/DesignSection';
 import EngineeringSection from '@/components/TextAnimationSection/EngineeringSection';
 import HarmonySection from '@/components/TextAnimationSection/HarmonySection';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { Ref, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import '../../../styles/main.css';
 
-export default function Main() {
+export default function Main({
+  portfoliosectionRef,
+}: {
+  portfoliosectionRef?: Ref<HTMLDivElement>;
+}) {
   const [visibleElements, setVisibleElements] = useState<number[]>([]);
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentScreen, setCurrentScreen] = useState<number>(0);
@@ -135,7 +139,7 @@ export default function Main() {
           </div>
         </div>
         <ServiceSection />
-        <PortPolioSection />
+        <PortFolioSection ref={portfoliosectionRef} />
       </div>
     </div>
   );

@@ -16,9 +16,17 @@ export default function RootLayout({
   const isMobile = useMediaQuery({ query: '(max-width : 1024px)' });
 
   const footerRef = useRef<HTMLDivElement>(null);
+  const portfoliosectionRef = useRef<HTMLDivElement>(null);
 
   const scrollToFooter = () => {
     footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollPorfFolioSection = () => {
+    const el = document.getElementById('portfolio-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const pathname = usePathname();
@@ -33,11 +41,16 @@ export default function RootLayout({
 
   return (
     <>
-      <Header onContactClick={scrollToFooter} />
+      <Header
+        onContactClick={scrollToFooter}
+        onPortFolioClick={scrollPorfFolioSection}
+      />
       {isMobile && showPadding ? (
-        <div className="pt-[82px]">{children}</div>
+        <div ref={portfoliosectionRef} className="pt-[82px]">
+          {children}
+        </div>
       ) : (
-        <div>{children}</div>
+        <div ref={portfoliosectionRef}>{children}</div>
       )}
       <Footer ref={footerRef} />
     </>
