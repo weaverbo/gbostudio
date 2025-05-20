@@ -1,5 +1,6 @@
 'use client';
 
+import CustomCursor from '@/components/ui/CustomCusor';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -53,6 +54,7 @@ export default function RootLayout({
         <div ref={portfoliosectionRef}>{children}</div>
       )}
       <Footer ref={footerRef} />
+      <CustomCursor />
     </>
   );
 }

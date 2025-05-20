@@ -50,9 +50,13 @@ export default function CommonQuestionSection() {
               className="w-full border-t-[1px] border-black mt-[36px]"
             >
               <div className="flex justify-between items-center pt-[37px]">
-                <h2 className="text-xl">{q.title}</h2>
-                <button onClick={() => toggle(index)}>
+                <h2 className="text-xl pl-[10px]">{q.title}</h2>
+                <button
+                  className="cursor-none pointer-events-auto w-10 h-10"
+                  onClick={() => toggle(index)}
+                >
                   <Image
+                    className="pointer-events-none"
                     src={activeIndex === index ? open : closed}
                     alt="closed_icon"
                   />
@@ -67,7 +71,7 @@ export default function CommonQuestionSection() {
             }
             `}
               >
-                <p className="text-xl leading-[29px]">{q.answer}</p>
+                <p className="text-xl leading-[29px] pl-[10px]">{q.answer}</p>
               </div>
             </div>
           ))}

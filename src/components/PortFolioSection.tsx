@@ -76,7 +76,7 @@ export default function PortFolioSection() {
                   <p className="underline">Design</p>
                   <p className="underline">FullStack</p>
                 </div>
-                <StyledLink href="">
+                <StyledLink className="cursor-none" href="">
                   <Image
                     src={content.src}
                     alt="team"

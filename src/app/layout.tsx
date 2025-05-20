@@ -25,11 +25,12 @@ export default function RootLayout({
           <link rel="icon" href="/glogo.png" />
           <title>GBO STUDIO</title>
         </head>
+
         <body className="relative overflow-x-hidden">
           {children}
           <StyleLink
             href="/"
-            className="w-[80px] h-[80px] rounded-full bg-[#000] text-xs flex items-center justify-center flex-col fixed bottom-[50px] right-[50px] z-50"
+            className="w-[80px] h-[80px] rounded-full bg-[#000] text-xs flex items-center justify-center flex-col fixed bottom-[50px] right-[50px] z-50 cursor-none"
           >
             <span className="text-white">Talk</span>
           </StyleLink>

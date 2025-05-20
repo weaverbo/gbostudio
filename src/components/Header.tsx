@@ -26,7 +26,7 @@ export default function Header({
           {isMenuOpen ? (
             <div className="fixed container bg-white w-full h-full top-0 left-0 z-50">
               <button
-                className="absolute top-6 right-6 text-xl"
+                className="absolute top-6 right-6 text-xl cursor-none"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Image src={close_icon} alt="close" />
@@ -43,7 +43,7 @@ export default function Header({
                 </li>
                 <li className="py-[39px]">
                   <button
-                    className="text-xl"
+                    className="text-xl cursor-none"
                     onClick={() => {
                       setIsMenuOpen(false);
                       onPortFolioClick?.();
@@ -54,7 +54,7 @@ export default function Header({
                 </li>
                 <li>
                   <button
-                    className="text-xl"
+                    className="text-xl cursor-none"
                     onClick={() => {
                       setIsMenuOpen(false);
                       onContactClick?.();
@@ -68,11 +68,11 @@ export default function Header({
           ) : (
             <div className="fixed w-full bg-background h-[82px] z-50">
               <div className="container flex justify-between items-center pt-[23px]">
-                <StyledLink href={'/'} className="text-2xl">
+                <StyledLink href={'/'} className="text-2xl cursor-none">
                   GBO STUDIO
                 </StyledLink>
                 <button
-                  className="text-xl"
+                  className="text-xl cursor-none"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
                   <Image src={menu_icon} alt="menu" />
@@ -85,18 +85,22 @@ export default function Header({
         <>
           <div className="fixed w-full bg-background h-[82px] z-50">
             <div className="container flex justify-between items-center pt-[23px] py-[23px] ">
-              <StyledLink href={'/'} className="text-2xl">
+              <StyledLink href={'/'} className="text-2xl cursor-none">
                 GBO Studio
               </StyledLink>
               <div className="text-xl">
                 <button
+                  className="cursor-none"
                   onClick={() => {
                     onPortFolioClick?.();
                   }}
                 >
                   PORTFOLIO
                 </button>
-                <button onClick={onContactClick} className="ml-[24px]">
+                <button
+                  onClick={onContactClick}
+                  className="ml-[24px] cursor-none"
+                >
                   CONTACT
                 </button>
               </div>
