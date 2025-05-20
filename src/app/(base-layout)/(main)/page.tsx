@@ -1,5 +1,6 @@
 'use client';
 
+import CommonQuestionSection from '@/components/CommonQuestionSection';
 import PortFolioSection from '@/components/PortFolioSection';
 import ServiceSection from '@/components/ServiceSection';
 import DesignSection from '@/components/TextAnimationSection/DesignSection';
@@ -140,6 +141,7 @@ export default function Main({
         </div>
         <ServiceSection />
         <PortFolioSection ref={portfoliosectionRef} />
+        <CommonQuestionSection />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ export function LineAnimation({ animationKey }: { animationKey: number }) {
     <motion.div
       key={animationKey}
       initial={{ width: 0 }}
-      animate={{ width: '100%' }}
+      animate={{ width: '101%' }}
       transition={{ duration: 1, ease: 'easeOut' }}
       className="h-[1px] bg-black absolute top-5 mr-[-383px]"
       style={{ right: 'calc(100px)' }}

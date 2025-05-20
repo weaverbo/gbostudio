@@ -1,9 +1,9 @@
 .portfolio-section-container {
-  @apply mt-[96px] mb-[280px] overflow-x-scroll w-screen;
+  @apply mt-[96px] mb-[280px] overflow-x-scroll scrollbar-hide w-screen;
 }
 
 .portfolio-container {
-  @apply flex gap-[64px] w-max;
+  @apply flex gap-[64px] w-max mr-[200px];
 }
 
 .portfolio-tag {
