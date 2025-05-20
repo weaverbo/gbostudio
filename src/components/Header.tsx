@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive';
 
 import close_icon from '../../public/img/close_icon.png';
 import menu_icon from '../../public/img/menu_icon.png';
+import '../styles/header.css';
 
 export default function Header({
   onContactClick,
@@ -43,7 +44,7 @@ export default function Header({
                 </li>
                 <li className="py-[39px]">
                   <button
-                    className="text-xl cursor-none"
+                    className="common-button-style"
                     onClick={() => {
                       setIsMenuOpen(false);
                       onPortFolioClick?.();
@@ -54,7 +55,7 @@ export default function Header({
                 </li>
                 <li>
                   <button
-                    className="text-xl cursor-none"
+                    className="common-button-style"
                     onClick={() => {
                       setIsMenuOpen(false);
                       onContactClick?.();
@@ -72,7 +73,7 @@ export default function Header({
                   GBO STUDIO
                 </StyledLink>
                 <button
-                  className="text-xl cursor-none"
+                  className="common-button-style"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
                   <Image src={menu_icon} alt="menu" />

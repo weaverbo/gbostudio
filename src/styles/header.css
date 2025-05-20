@@ -1,0 +1,3 @@
+.common-button-style {
+  @apply text-xl cursor-none;
+}

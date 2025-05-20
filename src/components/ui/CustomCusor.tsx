@@ -13,7 +13,7 @@ export default function CustomCursor() {
 
   return (
     <div
-      className="fixed w-6 h-6 bg-black rounded-full pointer-events: none z-[9999]"
+      className="fixed w-8 h-8 border-[5px] border-black rounded-full pointer-events: none z-[9999]"
       style={{ left: position.x, top: position.y }}
     />
   );
