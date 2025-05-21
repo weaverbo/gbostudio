@@ -6,12 +6,12 @@ import { LineAnimation } from './ui/LineAnimation';
 import UnderLineText from './ui/UnderlineText';
 
 const Footer = forwardRef<HTMLDivElement>((_, footerRef) => {
-  const { ref, animationKey } = useAnimateOnInView();
+  const { onInviewRef, animationKey } = useAnimateOnInView();
 
   return (
     <>
       <div ref={footerRef}>
-        <div className="container relative" ref={ref}>
+        <div className="container relative" ref={onInviewRef}>
           <LineAnimation animationKey={animationKey} />
           <div className="contact-left-container">
             <p className="contact-left-title">LET&apos;S TALK</p>

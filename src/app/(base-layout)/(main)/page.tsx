@@ -1,147 +1,122 @@
 'use client';
 
-import CommonQuestionSection from '@/components/CommonQuestionSection';
+import FAQSection from '@/components/FAQSection';
 import PortFolioSection from '@/components/PortFolioSection';
 import ServiceSection from '@/components/ServiceSection';
-import DesignSection from '@/components/TextAnimationSection/DesignSection';
-import EngineeringSection from '@/components/TextAnimationSection/EngineeringSection';
-import HarmonySection from '@/components/TextAnimationSection/HarmonySection';
-import { usePathname } from 'next/navigation';
-import { Ref, useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import '../../../styles/main.css';
 
-export default function Main({
-  portfoliosectionRef,
-}: {
-  portfoliosectionRef?: Ref<HTMLDivElement>;
-}) {
-  const [visibleElements, setVisibleElements] = useState<number[]>([]);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [currentScreen, setCurrentScreen] = useState<number>(0);
+export default function Main() {
   const [isMediaQuery, setIsMediaQuery] = useState<boolean | null>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const scrollsectionRef = useRef<HTMLDivElement>(null);
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
-  const pathname = usePathname();
-  const isMobile = useMediaQuery({ query: '(max-width : 768px)' });
+  const scrollSectionRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
   useEffect(() => {
     setIsMediaQuery(isMobile);
   }, [isMobile]);
 
-  // 텍스트 인터랙션
-  const startTextAnimation = () => {
-    setVisibleElements([]);
-    const timers = [
-      setTimeout(() => setVisibleElements(prev => [...prev, 0]), 500),
-      setTimeout(() => setVisibleElements(prev => [...prev, 1]), 1000),
-      setTimeout(() => setVisibleElements(prev => [...prev, 2]), 1500),
-      setTimeout(() => setVisibleElements(prev => [...prev, 3]), 2000),
-      setTimeout(() => setVisibleElements(prev => [...prev, 4]), 2500),
-    ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const index = Number(entry.target.getAttribute('data-index'));
+          if (entry.isIntersecting) {
+            setActiveIndex(index);
+          }
+        });
+      },
+      {
+        threshold: 0.6,
+      }
+    );
 
-    setIsAnimating(true);
-
-    setTimeout(() => {
-      setIsAnimating(false);
-    }, 2500);
+    scrollSectionRef.current.forEach(ref => {
+      if (ref) observer.observe(ref);
+    });
 
     return () => {
-      timers.forEach(timer => clearTimeout(timer));
+      scrollSectionRef.current.forEach(ref => {
+        if (ref) observer.unobserve(ref);
+      });
     };
-  };
+  }, []);
 
-  // 스크롤 애니메이션
-  useEffect(() => {
-    const handleScroll = () => {
-      if (isAnimating) return;
-
-      const scrollPosition = window.scrollY;
-      const designToEngineering = window.innerHeight * 0.01;
-      const engineeringToHarmony = window.innerHeight * 0.02;
-
-      if (scrollPosition > designToEngineering && currentScreen === 0) {
-        setCurrentScreen(1);
-      } else if (scrollPosition <= designToEngineering && currentScreen === 1) {
-        setCurrentScreen(0);
-      } else if (scrollPosition > engineeringToHarmony && currentScreen === 1) {
-        setCurrentScreen(2);
-      } else if (
-        scrollPosition <= engineeringToHarmony &&
-        currentScreen === 2
-      ) {
-        setCurrentScreen(1);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentScreen, isAnimating]);
-
-  // 스크롤 제어
-  useEffect(() => {
-    const cleanup = startTextAnimation();
-
-    const scrollsection = scrollsectionRef.current;
-
-    if (scrollsection) {
-      const rect = scrollsection.getBoundingClientRect();
-      const isInView =
-        rect.top <= 50 && rect.bottom >= window.innerHeight * 0.5;
-
-      if (!isAnimating && isInView) {
-        window.scrollTo({ top: scrollsection.offsetTop, behavior: 'auto' });
-      }
-    }
-
-    return cleanup;
-  }, [currentScreen]);
-
-  // 스크롤 제어
-  // useEffect(() => {
-  //   if (isAnimating) {
-  //     document.body.style.overflow = 'hidden';
-  //   } else {
-  //     document.body.style.overflow = '';
-  //   }
-  // }, [isAnimating]);
-
-  useEffect(() => {
-    if (pathname === '/') {
-      startTextAnimation();
-    }
-  }, [pathname]);
+  const mainContents = [
+    {
+      title: 'Design',
+      paragraph_first: 'intentional interaction',
+      paragraph_second: 'every element serves a purpose — no more, no less',
+      paragraph_third: 'minimal yet meaningful',
+    },
+    {
+      title: 'Devolop',
+      paragraph_first: 'code that lasts, not just functions',
+      paragraph_second: 'readable, reusable, reliable',
+      paragraph_third: 'we build clean, scalable code for the long run',
+    },
+    {
+      title: 'Dovetail',
+      paragraph_first: 'planning, design, and development in perfect synergy',
+      paragraph_second: 'bridging creativity and technology',
+      paragraph_third: 'design and development, flowing as one',
+    },
+  ];
 
   return (
     <div className="overflow-x-hidden">
       <div className="container">
-        <div ref={scrollsectionRef} className="h-[900px] mt-[82px] relative">
-          <div ref={scrollContainerRef}>
-            {currentScreen === 0 && (
-              <DesignSection
-                visibleElements={visibleElements}
-                isMobile={isMobile}
-              />
-            )}
-            {currentScreen === 1 && (
-              <EngineeringSection
-                visibleElements={visibleElements}
-                isMobile={isMobile}
-              />
-            )}
-            {currentScreen === 2 && (
-              <HarmonySection
-                visibleElements={visibleElements}
-                isMobile={isMobile}
-              />
-            )}
-          </div>
+        <div className="mt-[82px] relative">
+          {mainContents.map((contents, i) => (
+            <div
+              key={i}
+              data-index={i}
+              ref={el => void (scrollSectionRef.current[i] = el)}
+              className="min-h-[100vh] flex"
+            >
+              {activeIndex === i && (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  className="scroll-section"
+                >
+                  <h1 className="scroll-section-title">{contents.title}</h1>
+                  <div className="scroll-section-description-container">
+                    <p className="scroll-section-description">
+                      {contents.paragraph_first}
+                    </p>
+                    <p className="scroll-section-description-other">
+                      {contents.paragraph_second}
+                    </p>
+                    <p className="scroll-section-description">
+                      {contents.paragraph_third}
+                    </p>
+                  </div>
+                  <div className="scroll-dots">
+                    <div
+                      className={`scroll-dot ${activeIndex === 0 ? 'bg-black' : 'bg-white'}`}
+                    ></div>
+                    <div
+                      className={`scroll-dot ${activeIndex === 1 ? 'bg-black' : 'bg-white'}`}
+                    ></div>
+                    <div
+                      className={`scroll-dot ${activeIndex === 2 ? 'bg-black' : 'bg-white'}`}
+                    ></div>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          ))}
         </div>
         <ServiceSection />
-        <PortFolioSection ref={portfoliosectionRef} />
-        <CommonQuestionSection />
+        <PortFolioSection />
+        <FAQSection />
       </div>
     </div>
   );

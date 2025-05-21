@@ -18,8 +18,8 @@ export default function PortFolioSection() {
   const portfolio_contents = [
     {
       src: pp1_min,
-
       title: 'Team App WebSite',
+      link: 'https://team-tau-seven.vercel.app/',
     },
     {
       src: pp2_min,
@@ -76,7 +76,7 @@ export default function PortFolioSection() {
                   <p className="underline">Design</p>
                   <p className="underline">FullStack</p>
                 </div>
-                <StyledLink className="cursor-none" href="">
+                <StyledLink className="cursor-none" href={`${content.link}`}>
                   <Image
                     src={content.src}
                     alt="team"

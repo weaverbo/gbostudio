@@ -5,11 +5,11 @@ import '../styles/servicesection.css';
 import { LineAnimation } from './ui/LineAnimation';
 
 export default function ServiceSection() {
-  const { ref, animationKey } = useAnimateOnInView();
+  const { onInviewRef, animationKey } = useAnimateOnInView();
 
   return (
     <>
-      <div ref={ref} className="relative">
+      <div ref={onInviewRef} className="relative">
         <h1 className="text-3xl">SERVICES</h1>
         <LineAnimation animationKey={animationKey} />
         <div className="service-container">

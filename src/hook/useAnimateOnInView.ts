@@ -1,25 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 
 export function useAnimateOnInView(threshold = 0.5) {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const onInviewRef = useRef<HTMLDivElement | null>(null);
   const [animationKey, setAnimationkey] = useState(0);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimationkey(prev => prev + 1);
-        }
-      },
-      { threshold }
-    );
+  console.log(animationKey);
 
-    if (ref.current) {
-      observer.observe(ref.current);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setAnimationkey(prev => prev + 1);
+      } else {
+        setAnimationkey(0);
+      }
+    });
+
+    if (onInviewRef.current) {
+      observer.observe(onInviewRef.current);
     }
 
     return () => observer.disconnect();
   }, [threshold]);
 
-  return { ref, animationKey };
+  return { onInviewRef, animationKey };
 }

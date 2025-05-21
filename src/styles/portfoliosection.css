@@ -11,7 +11,7 @@
 }
 
 .portfolio-image {
-  @apply w-[740px] h-[1098px] grayscale hover:grayscale-0;
+  @apply w-[440px] grayscale hover:grayscale-0;
 }
 
 .portfolio-bottom-tag {

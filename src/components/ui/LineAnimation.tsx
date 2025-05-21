@@ -7,8 +7,8 @@ export function LineAnimation({ animationKey }: { animationKey: number }) {
       initial={{ width: 0 }}
       animate={{ width: '100%' }}
       transition={{ duration: 1, ease: 'easeOut' }}
-      className="h-[1px] bg-black absolute top-5 mr-[-383px]"
-      style={{ right: 'calc(100px)' }}
+      className="h-[1px] bg-black absolute top-5"
+      style={{ right: '-280px' }}
     />
   );
 }

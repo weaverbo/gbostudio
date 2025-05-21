@@ -3,7 +3,7 @@
 }
 
 .scroll-section-title {
-  @apply h-[204px] text-[180px] ml-[-13px] transition-opacity duration-500;
+  @apply h-[204px] text-[180px] ml-[-13px];
 }
 
 .scroll-section-description-container {
@@ -23,19 +23,7 @@
 }
 
 .scroll-dot {
-  @apply w-[10px] h-[10px] bg-[#000] rounded-full;
-}
-
-.scroll-dot_other {
-  @apply w-[10px] h-[10px] bg-[#FFFF] rounded-full;
-}
-
-.marker-container {
-  @apply flex text-xl mt-[36px];
-}
-
-.marker {
-  @apply mt-[91px] ml-[8px] w-[20px] h-[20px] bg-[#FFCD00] rounded-full content-[''] shadow-[0_2px_8px_rgba(0,0,0,0.2)];
+  @apply w-[10px] h-[10px];
 }
 
 @media (max-width: 1280px) {

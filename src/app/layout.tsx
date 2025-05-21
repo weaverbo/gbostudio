@@ -25,7 +25,6 @@ export default function RootLayout({
           <link rel="icon" href="/glogo.png" />
           <title>GBO STUDIO</title>
         </head>
-
         <body className="relative overflow-x-hidden">
           {children}
           <StyleLink

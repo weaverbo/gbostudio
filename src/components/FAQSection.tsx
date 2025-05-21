@@ -4,7 +4,7 @@ import { useState } from 'react';
 import closed from '../../public/img/closed.png';
 import open from '../../public/img/open.png';
 
-export default function CommonQuestionSection() {
+export default function FAQSection() {
   const [activeIndex, setIActiveIndex] = useState<number | null>(null);
 
   const toggle = (index: number) => {
@@ -42,7 +42,7 @@ export default function CommonQuestionSection() {
   return (
     <>
       <div className="container mb-[280px]">
-        <h1 className="text-[96px]">Common Question</h1>
+        <h1 className="text-[96px]">FAQ</h1>
         <div className="mt-[72px]">
           {question.map((q, index) => (
             <div
