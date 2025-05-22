@@ -3,6 +3,7 @@
 import FAQSection from '@/components/FAQSection';
 import PortFolioSection from '@/components/PortFolioSection';
 import ServiceSection from '@/components/ServiceSection';
+import TypingText from '@/components/ui/TypingText';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -12,6 +13,9 @@ import '../../../styles/main.css';
 export default function Main() {
   const [isMediaQuery, setIsMediaQuery] = useState<boolean | null>(null);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const [typingFinished, setTypingFinished] = useState<boolean[]>(
+    new Array(3).fill(false)
+  );
 
   const scrollSectionRef = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -80,24 +84,73 @@ export default function Main() {
             >
               {activeIndex === i && (
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
                   className="scroll-section"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
-                  <h1 className="scroll-section-title">{contents.title}</h1>
-                  <div className="scroll-section-description-container">
-                    <p className="scroll-section-description">
-                      {contents.paragraph_first}
-                    </p>
-                    <p className="scroll-section-description-other">
-                      {contents.paragraph_second}
-                    </p>
-                    <p className="scroll-section-description">
-                      {contents.paragraph_third}
-                    </p>
-                  </div>
+                  <TypingText
+                    text={contents.title}
+                    onTypingEnd={() => {
+                      setTypingFinished(prev => {
+                        const updated = [...prev];
+                        updated[i] = true;
+                        return updated;
+                      });
+                    }}
+                  />
+                  {typingFinished[i] && (
+                    <div className="scroll-section-description-container">
+                      <motion.p
+                        className="scroll-section-description"
+                        initial={{
+                          clipPath: 'inset(150% 0% 0% 0%)',
+                          opacity: 0,
+                          y: 2,
+                        }}
+                        animate={{
+                          clipPath: 'inset(0% 0% 0% 0%)',
+                          opacity: 1,
+                          y: 0,
+                        }}
+                        transition={{ duration: 1.6, ease: 'easeOut' }}
+                      >
+                        {contents.paragraph_first}
+                      </motion.p>
+                      <motion.p
+                        className="scroll-section-description-other"
+                        initial={{
+                          clipPath: 'inset(150% 0% 0% 0%)',
+                          opacity: 0,
+                          y: 2,
+                        }}
+                        animate={{
+                          clipPath: 'inset(0% 0% 0% 0%)',
+                          opacity: 1,
+                          y: 0,
+                        }}
+                        transition={{ duration: 1.6, ease: 'easeOut' }}
+                      >
+                        {contents.paragraph_second}
+                      </motion.p>
+                      <motion.p
+                        className="scroll-section-description"
+                        initial={{
+                          clipPath: 'inset(150% 0% 0% 0%)',
+                          opacity: 0,
+                          y: 2,
+                        }}
+                        animate={{
+                          clipPath: 'inset(0% 0% 0% 0%)',
+                          opacity: 1,
+                          y: 0,
+                        }}
+                        transition={{ duration: 1.6, ease: 'easeOut' }}
+                      >
+                        {contents.paragraph_third}
+                      </motion.p>
+                    </div>
+                  )}
                   <div className="scroll-dots">
                     <div
                       className={`scroll-dot ${activeIndex === 0 ? 'bg-black' : 'bg-white'}`}

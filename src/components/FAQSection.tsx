@@ -30,7 +30,7 @@ export default function FAQSection() {
     {
       title: '제작 완료 후 무료 수정은 몇 회까지 가능한가요?',
       answer:
-        '제작 완료 후 수정은 총 2회까지 무료로 제공해드립니다. 이 수정 횟수 안에서는 추가 비용이 발생하지 않습니다. 단, 수정 범위가 커지거나 새로운 기능을 추가하는 경우, 별도 협의가 필요할 수 있습니다.',
+        '제작 완료 후 수정은 총 2회까지 무료로 제공합니다. 이 수정 횟수 안에서는 추가 비용이 발생하지 않습니다. 단, 수정 범위가 커지거나 새로운 기능을 추가하는 경우, 별도 협의가 필요합니다.',
     },
     {
       title: '주로 어떤 분야 홈페이지를 전문적으로 제작하나요?',
@@ -64,10 +64,10 @@ export default function FAQSection() {
               </div>
               <div
                 className={`
-            transition-all duration-500 ease-in-out overflow-hidden ${
+            transition-all duration-300 ease-in-out ${
               activeIndex === index
                 ? 'opacity-100 mt-[36px]'
-                : 'max-h-0 opacity-0'
+                : 'opacity-0 max-h-0'
             }
             `}
               >

@@ -7,15 +7,15 @@
 }
 
 .scroll-section-description-container {
-  @apply mt-[42px];
+  @apply mt-[42px] overflow-visible;
 }
 
 .scroll-section-description {
-  @apply text-xl transition-opacity duration-500;
+  @apply text-xl leading-[28px];
 }
 
 .scroll-section-description-other {
-  @apply text-xl my-[12px] transition-opacity duration-500;
+  @apply text-xl my-[5px] leading-[28px];
 }
 
 .scroll-dots {
