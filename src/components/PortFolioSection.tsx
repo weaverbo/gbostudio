@@ -61,7 +61,7 @@ export default function PortFolioSection() {
   return (
     <>
       <div id="portfolio-section">
-        <h1 className="text-[96px]">PortFolio</h1>
+        <h1 className="portfolio-section-title">Portfolio</h1>
         <div className="portfolio-section-container">
           <div className="portfolio-container">
             {portfolio_contents.map((content, i) => (

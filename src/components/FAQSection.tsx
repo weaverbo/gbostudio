@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-import closed from '../../public/img/closed.png';
+import close_pc from '../../public/img/closed_pc.png';
 import open from '../../public/img/open.png';
+import '../styles/faqsection.css';
 
 export default function FAQSection() {
   const [activeIndex, setIActiveIndex] = useState<number | null>(null);
@@ -41,24 +42,21 @@ export default function FAQSection() {
 
   return (
     <>
-      <div className="container mb-[280px]">
-        <h1 className="text-[96px]">FAQ</h1>
+      <div className="mb-[280px]">
+        <h1 className="faq-section-title">FAQ</h1>
         <div className="mt-[72px]">
           {question.map((q, index) => (
-            <div
-              key={index}
-              className="w-full border-t-[1px] border-black mt-[36px]"
-            >
-              <div className="flex justify-between items-center pt-[37px]">
-                <h2 className="text-xl pl-[10px]">{q.title}</h2>
+            <div key={index} className="faq-section-wrapper">
+              <div className="faq-question-container">
+                <h2 className="faq-question">{q.title}</h2>
                 <button
-                  className="cursor-none pointer-events-auto w-10 h-10"
+                  className="cursor-none pointer-events-auto toggle-icon w-10 h-10"
                   onClick={() => toggle(index)}
                 >
                   <Image
                     className="pointer-events-none"
-                    src={activeIndex === index ? open : closed}
-                    alt="closed_icon"
+                    src={activeIndex === index ? open : close_pc}
+                    alt="closed_pc"
                   />
                 </button>
               </div>
@@ -66,12 +64,12 @@ export default function FAQSection() {
                 className={`
             transition-all duration-300 ease-in-out ${
               activeIndex === index
-                ? 'opacity-100 mt-[36px]'
+                ? 'opacity-100 faq-answer-container'
                 : 'opacity-0 max-h-0'
             }
             `}
               >
-                <p className="text-xl leading-[29px] pl-[10px]">{q.answer}</p>
+                <p className="faq-answer">{q.answer}</p>
               </div>
             </div>
           ))}

@@ -1,3 +1,11 @@
 .common-button-style {
   @apply text-xl cursor-none;
 }
+
+.menu_icon {
+  @apply w-[24px] h-[24px];
+}
+
+.close_icon {
+  @apply w-[24px] h-[24px];
+}

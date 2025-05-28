@@ -1,13 +1,14 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+import '../../styles/typingtext.css';
+
 type TypingTextProps = {
   text: string;
   onTypingEnd?: () => void;
 };
 
 const TypingText = ({ text, onTypingEnd }: TypingTextProps) => {
-  console.log(text);
   const [typingedText, setTypingedText] = useState('');
   const [index, setIndex] = useState(0);
 
@@ -23,13 +24,13 @@ const TypingText = ({ text, onTypingEnd }: TypingTextProps) => {
     }
   }, [index, text]);
   return (
-    <h1 className="h-[204px] text-[180px] ml-[-13px]">
+    <h1 className="scroll-section-title">
       {typingedText}
       <motion.span
         initial={{ opacity: 1 }}
         animate={{ opacity: [1, 0, 1] }}
         transition={{ repeat: Infinity, duration: 0.8 }}
-        className="inline-block w-[2px] h-[180px] bg-black align-middle translate-y-[-15px] ml-[11px]"
+        className="typing-cursor"
       ></motion.span>
     </h1>
   );

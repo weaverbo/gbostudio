@@ -1,0 +1,27 @@
+.scroll-section-title {
+  @apply text-[180px] ml-[-13px];
+}
+
+.typing-cursor {
+  @apply inline-block w-[2px] h-[180px] bg-black align-middle translate-y-[-15px] ml-[11px];
+}
+
+@media (max-width: 710px) {
+  .scroll-section-title {
+    @apply text-[120px] ml-[-8px];
+  }
+
+  .typing-cursor {
+    @apply h-[121px];
+  }
+}
+
+@media (max-width: 470px) {
+  .scroll-section-title {
+    @apply text-[64px];
+  }
+
+  .typing-cursor {
+    @apply h-[77px];
+  }
+}

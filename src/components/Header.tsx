@@ -1,12 +1,13 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import StyledLink from 'next/link';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-import close_icon from '../../public/img/close_icon.png';
-import menu_icon from '../../public/img/menu_icon.png';
+import close_mobile from '../../public/img/close_mobile.png';
+import menu from '../../public/img/menu.png';
 import '../styles/header.css';
 
 export default function Header({
@@ -18,19 +19,19 @@ export default function Header({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const isMobile = useMediaQuery({ query: '(max-width : 580px)' });
+  const isMobile = useMediaQuery({ maxWidth: 580 });
 
   return (
     <>
       {isMobile ? (
         <>
           {isMenuOpen ? (
-            <div className="fixed container bg-white w-full h-full top-0 left-0 z-50">
+            <div className="fixed container bg-background w-full h-full top-0 left-0 z-50">
               <button
                 className="absolute top-6 right-6 text-xl cursor-none"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <Image src={close_icon} alt="close" />
+                <Image className="close_icon" src={close_mobile} alt="close" />
               </button>
               <ul className="flex flex-col mt-[68px] ml-[48px] text-xl">
                 <li className="pt-[39px]">
@@ -67,16 +68,19 @@ export default function Header({
               </ul>
             </div>
           ) : (
-            <div className="fixed w-full bg-background h-[82px] z-50">
-              <div className="container flex justify-between items-center pt-[23px]">
-                <StyledLink href={'/'} className="text-2xl cursor-none">
-                  GBO STUDIO
+            <div className="fixed top-0 bg-background top-0 z-50 w-full">
+              <div className="container flex justify-between items-center py-[23px]">
+                <StyledLink
+                  href={'/'}
+                  className="text-2xl cursor-none ml-[-8px]"
+                >
+                  GBO Studio
                 </StyledLink>
                 <button
                   className="common-button-style"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
-                  <Image src={menu_icon} alt="menu" />
+                  <Image className="menu_icon" src={menu} alt="menu" />
                 </button>
               </div>
             </div>
@@ -84,8 +88,8 @@ export default function Header({
         </>
       ) : (
         <>
-          <div className="fixed w-full bg-background h-[82px] z-50">
-            <div className="container flex justify-between items-center pt-[23px] py-[23px] ">
+          <div className="fixed top-0 bg-background top-0 z-50 w-full">
+            <div className="container flex justify-between items-center py-[23px]">
               <StyledLink href={'/'} className="text-2xl cursor-none">
                 GBO Studio
               </StyledLink>

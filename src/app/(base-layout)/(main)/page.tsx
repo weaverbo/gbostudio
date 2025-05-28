@@ -5,14 +5,15 @@ import PortFolioSection from '@/components/PortFolioSection';
 import ServiceSection from '@/components/ServiceSection';
 import TypingText from '@/components/ui/TypingText';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
+
+// import { useMediaQuery } from 'react-responsive';
 
 import '../../../styles/main.css';
 
 export default function Main() {
-  const [isMediaQuery, setIsMediaQuery] = useState<boolean | null>(null);
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  // const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const [typingFinished, setTypingFinished] = useState<boolean[]>(
     new Array(3).fill(false)
   );
@@ -21,16 +22,18 @@ export default function Main() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   useEffect(() => {
-    setIsMediaQuery(isMobile);
-  }, [isMobile]);
-
-  useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
           const index = Number(entry.target.getAttribute('data-index'));
           if (entry.isIntersecting) {
             setActiveIndex(index);
+
+            setTypingFinished(prev => {
+              const updated = [...prev];
+              updated[index] = false;
+              return updated;
+            });
           }
         });
       },
@@ -71,10 +74,17 @@ export default function Main() {
     },
   ];
 
+  const ServiceSection = dynamic(
+    () => import('../../../components/ServiceSection'),
+    {
+      ssr: false,
+    }
+  );
+
   return (
     <div className="overflow-x-hidden">
       <div className="container">
-        <div className="mt-[82px] relative">
+        <div className="relative">
           {mainContents.map((contents, i) => (
             <div
               key={i}
@@ -85,7 +95,6 @@ export default function Main() {
               {activeIndex === i && (
                 <motion.div
                   className="scroll-section"
-                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
@@ -104,7 +113,7 @@ export default function Main() {
                       <motion.p
                         className="scroll-section-description"
                         initial={{
-                          clipPath: 'inset(150% 0% 0% 0%)',
+                          clipPath: 'inset(100% 0% 0% 0%)',
                           opacity: 0,
                           y: 2,
                         }}
@@ -113,14 +122,14 @@ export default function Main() {
                           opacity: 1,
                           y: 0,
                         }}
-                        transition={{ duration: 1.6, ease: 'easeOut' }}
+                        transition={{ duration: 1.8, ease: 'easeOut' }}
                       >
                         {contents.paragraph_first}
                       </motion.p>
                       <motion.p
                         className="scroll-section-description-other"
                         initial={{
-                          clipPath: 'inset(150% 0% 0% 0%)',
+                          clipPath: 'inset(100% 0% 0% 0%)',
                           opacity: 0,
                           y: 2,
                         }}
@@ -129,14 +138,14 @@ export default function Main() {
                           opacity: 1,
                           y: 0,
                         }}
-                        transition={{ duration: 1.6, ease: 'easeOut' }}
+                        transition={{ duration: 1.8, ease: 'easeOut' }}
                       >
                         {contents.paragraph_second}
                       </motion.p>
                       <motion.p
                         className="scroll-section-description"
                         initial={{
-                          clipPath: 'inset(150% 0% 0% 0%)',
+                          clipPath: 'inset(100% 0% 0% 0%)',
                           opacity: 0,
                           y: 2,
                         }}
@@ -145,7 +154,7 @@ export default function Main() {
                           opacity: 1,
                           y: 0,
                         }}
-                        transition={{ duration: 1.6, ease: 'easeOut' }}
+                        transition={{ duration: 1.8, ease: 'easeOut' }}
                       >
                         {contents.paragraph_third}
                       </motion.p>

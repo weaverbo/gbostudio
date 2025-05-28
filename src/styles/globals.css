@@ -5,6 +5,7 @@
 :root {
   background-color: #ebebeb;
   cursor: none;
+  overflow-x: hidden;
 }
 
 h1,
@@ -35,17 +36,48 @@ div {
 
 @media (max-width: 1279px) {
   .container {
-    @apply mx-auto max-w-[860px];
+    /* 양 옆 여백은 정할 수 없어 어차피 컨텐츠는 중앙으로 가야하니, max-w만 잘 정해주면 된다 */
+    @apply mx-auto max-w-[952px];
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1000px) {
   .container {
-    @apply mx-auto px-[70px];
+    @apply mx-auto max-w-[720px];
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    @apply mx-auto max-w-[720px];
+  }
+}
+
+@media (max-width: 750px) {
+  .container {
+    @apply px-[24px];
+  }
+}
+
+@media (max-width: 720px) {
+  .container {
+    @apply px-[24px];
+  }
+}
+
+@media (max-width: 720px) {
+  .container {
+    @apply px-[24px];
   }
 }
 
 @media (max-width: 580px) {
+  .container {
+    @apply mx-auto px-[24px];
+  }
+}
+
+@media (max-width: 470px) {
   .container {
     @apply mx-auto px-[25px];
   }

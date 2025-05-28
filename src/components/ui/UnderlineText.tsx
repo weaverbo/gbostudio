@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
+import '../../styles/underlinetext.css';
+
 export default function UnderLineText({
   children,
 }: {
@@ -16,7 +18,7 @@ export default function UnderLineText({
     >
       <motion.span
         initial={false}
-        className="absolute inset-0 bg-black h-[2px] mt-[55px]"
+        className="underlineText"
         animate={{ scaleX: hovered ? 1 : 0 }}
         style={{ transformOrigin: 'left center' }}
       />
