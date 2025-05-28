@@ -26,18 +26,18 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(
                 <UnderLineText>gbostudio@naver.com</UnderLineText>
               </div>
               <div className="contact-right-container">
-                <div className="flex flex-col justify-between contact-label">
+                <div className="contact-label">
                   <p>GBO STUDIO</p>
                   <p>OFFICE HOURS</p>
                 </div>
                 <div className="w-[1px] h-[51px] bg-black mx-[16px]"></div>
                 <div className="w-[121px] flex gap-[12px]">
-                  <div className="flex flex-col justify-between contact-label">
+                  <div className="contact-label">
                     <p>MON</p>
                     <p>NINE</p>
                   </div>
                   <div className="contact-label flex items-center">TO</div>
-                  <div className="flex flex-col justify-between contact-label">
+                  <div className=" contact-label">
                     <p>FRI</p>
                     <p>SIX</p>
                   </div>

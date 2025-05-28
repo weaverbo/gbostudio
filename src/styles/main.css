@@ -50,6 +50,7 @@
   .scroll-section-description {
     @apply text-[10px];
   }
+
   .scroll-section-description-other {
     @apply text-[10px];
   }

@@ -22,6 +22,10 @@
   @apply flex;
 }
 
+.contact-label {
+  @apply flex flex-col justify-between;
+}
+
 .footer-botton-text {
   @apply text-black text-sm;
 }

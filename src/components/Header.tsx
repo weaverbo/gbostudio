@@ -25,7 +25,7 @@ export default function Header({
       {isMobile ? (
         <>
           {isMenuOpen ? (
-            <div className="fixed container bg-background w-full h-full top-0 left-0 z-50">
+            <div className="header-wrapper container h-full left-0 ">
               <button
                 className="absolute top-6 right-6 text-xl cursor-none"
                 onClick={() => setIsMenuOpen(false)}
@@ -67,8 +67,8 @@ export default function Header({
               </ul>
             </div>
           ) : (
-            <div className="fixed top-0 bg-background top-0 z-50 w-full">
-              <div className="container flex justify-between items-center py-[23px]">
+            <div className="header-wrapper">
+              <div className="container header-contents">
                 <StyledLink
                   href={'/'}
                   className="text-2xl cursor-none ml-[-8px]"
@@ -87,8 +87,8 @@ export default function Header({
         </>
       ) : (
         <>
-          <div className="fixed top-0 bg-background top-0 z-50 w-full">
-            <div className="container flex justify-between items-center py-[23px]">
+          <div className="header-wrapper">
+            <div className="container header-contents">
               <StyledLink href={'/'} className="text-2xl cursor-none">
                 GBO Studio
               </StyledLink>

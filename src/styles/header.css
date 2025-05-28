@@ -1,3 +1,11 @@
+.header-wrapper {
+  @apply fixed bg-background top-0 z-50 w-full;
+}
+
+.header-contents {
+  @apply flex justify-between items-center py-[23px];
+}
+
 .common-button-style {
   @apply text-xl cursor-none;
 }

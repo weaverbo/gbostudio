@@ -31,6 +31,7 @@ const variant = {
 
 export default function ServiceSection() {
   const { onInviewRef, animationKey } = useAnimateOnInView();
+
   const is10xl = useMediaQuery({ maxWidth: 1280 });
   const is11xl = useMediaQuery({ maxWidth: 1000 });
   const is12xl = useMediaQuery({ maxWidth: 680 });
