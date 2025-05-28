@@ -2,18 +2,14 @@
 
 import FAQSection from '@/components/FAQSection';
 import PortFolioSection from '@/components/PortFolioSection';
-import ServiceSection from '@/components/ServiceSection';
 import TypingText from '@/components/ui/TypingText';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 
-// import { useMediaQuery } from 'react-responsive';
-
 import '../../../styles/main.css';
 
 export default function Main() {
-  // const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const [typingFinished, setTypingFinished] = useState<boolean[]>(
     new Array(3).fill(false)
   );
