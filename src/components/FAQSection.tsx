@@ -47,7 +47,10 @@ export default function FAQSection() {
         <div className="mt-[72px]">
           {question.map((q, index) => (
             <div key={index} className="faq-section-wrapper">
-              <div className="faq-question-container">
+              <div
+                className="faq-question-container"
+                onClick={() => toggle(index)}
+              >
                 <h2 className="faq-question">{q.title}</h2>
                 <button
                   className="cursor-none pointer-events-auto toggle-icon "

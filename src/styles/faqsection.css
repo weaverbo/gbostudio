@@ -15,7 +15,7 @@
 }
 
 .toggle-icon {
-  @apply w-[50px] h-[50px] mr-[-20px];
+  @apply w-[24px] h-[24px];
 }
 
 .faq-answer-container {
