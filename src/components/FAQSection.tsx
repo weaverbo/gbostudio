@@ -50,7 +50,7 @@ export default function FAQSection() {
               <div className="faq-question-container">
                 <h2 className="faq-question">{q.title}</h2>
                 <button
-                  className="cursor-none pointer-events-auto toggle-icon w-10 h-10"
+                  className="cursor-none pointer-events-auto toggle-icon "
                   onClick={() => toggle(index)}
                 >
                   <Image

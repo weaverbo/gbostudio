@@ -31,13 +31,13 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(
                   <p>OFFICE HOURS</p>
                 </div>
                 <div className="w-[1px] h-[51px] bg-black mx-[16px]"></div>
-                <div className="w-[121px] flex gap-[12px]">
+                <div className="w-[121px] flex justify-center justify-between gap-[12px]">
                   <div className="contact-label">
                     <p>MON</p>
                     <p>NINE</p>
                   </div>
-                  <div className="contact-label flex items-center">TO</div>
-                  <div className=" contact-label">
+                  <div className="contact-label pt-[20px]">TO</div>
+                  <div className="contact-label">
                     <p>FRI</p>
                     <p>SIX</p>
                   </div>

@@ -1,9 +1,15 @@
 .underlineText {
-  @apply absolute inset-0 bg-black h-[2px] mt-[55px];
+  @apply absolute inset-0 bg-black h-[2px] mt-[47px];
 }
 
 @media (max-width: 710px) {
   .underlineText {
-    @apply mt-[32px];
+    @apply mt-[25px];
+  }
+}
+
+@media (max-width: 524px) {
+  .underlineText {
+    @apply mt-[24px];
   }
 }
