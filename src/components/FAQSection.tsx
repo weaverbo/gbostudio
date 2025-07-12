@@ -52,10 +52,7 @@ export default function FAQSection() {
                 onClick={() => toggle(index)}
               >
                 <h2 className="faq-question">{q.title}</h2>
-                <button
-                  className="cursor-none pointer-events-auto toggle-icon "
-                  onClick={() => toggle(index)}
-                >
+                <button className="cursor-none pointer-events-auto toggle-icon ">
                   <Image
                     className="pointer-events-none"
                     src={activeIndex === index ? open : close_pc}

@@ -41,6 +41,7 @@ export default function Header({
                   >
                     HOME
                   </StyledLink>
+                  ˆ
                 </li>
                 <li className="py-[39px]">
                   <button
